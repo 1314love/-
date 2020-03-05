@@ -6,7 +6,7 @@
   <link href="https://cosher.gitee.io/blog/atom.xml" rel="self"/>
   
   <link href="https://cosher.gitee.io/blog/"/>
-  <updated>2020-03-05T05:56:13.618Z</updated>
+  <updated>2020-03-05T06:40:56.157Z</updated>
   <id>https://cosher.gitee.io/blog/</id>
   
   <author>
@@ -17,25 +17,25 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Spring/index</title>
+    <title>Spring</title>
     <link href="https://cosher.gitee.io/blog/2020/03/05/Spring/index/"/>
     <id>https://cosher.gitee.io/blog/2020/03/05/Spring/index/</id>
     <published>2020-03-05T05:38:05.160Z</published>
-    <updated>2020-03-05T05:56:13.618Z</updated>
+    <updated>2020-03-05T06:40:56.157Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;images/blog/1.jpg&quot;
-        
-      
+      &lt;h1 id=&quot;Spiring&quot;&gt;&lt;a href=&quot;#Spiring&quot; class=&quot;headerlink&quot; title=&quot;Spiring&quot;&gt;&lt;/a&gt;Spiring&lt;/h1&gt;&lt;h3 id=&quot;Spring-是于-2003-年兴起的一个轻量级的Java-开发框架，创始人是Rod-Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目-spring-mvc-spring-boot-spring-cloud-spring-data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99-都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。&quot;&gt;&lt;a href=&quot;#Spring-是于-2003-年兴起的一个轻量级的Java-开发框架，创始人是Rod-Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目-spring-mvc-spring-boot-spring-cloud-spring-data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99-都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。&quot; class=&quot;headerlink&quot; title=&quot;Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目,spring mvc,spring boot,spring cloud, spring data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99%都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。&quot;&gt;&lt;/a&gt;Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的
     
     </summary>
     
     
+      <category term="Spring" scheme="https://cosher.gitee.io/blog/categories/Spring/"/>
+    
+    
+      <category term="Java" scheme="https://cosher.gitee.io/blog/tags/Java/"/>
+    
+      <category term="Spring" scheme="https://cosher.gitee.io/blog/tags/Spring/"/>
     
   </entry>
   
