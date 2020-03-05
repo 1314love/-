@@ -1,5 +1,8 @@
 body{
 	background-image: url('/blog/images/blog/sjbg.jpeg');
+	overflow: hidden;
+	height: 100vh;
+	width: 100vw;
 }
 @media screen and (min-width: 600px) {
     body {
