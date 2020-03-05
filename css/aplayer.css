@@ -1,0 +1,8 @@
+body{
+	background-image: url('/blog/images/sjbg.jpg');
+}
+@media screen and (min-width: 600px) {
+    body {
+        background-image: url('/blog/images/bg.jpg');
+    }
+}
