@@ -118,18 +118,15 @@
 &lt;/dependency&gt;</code></pre><p>添加上面依赖之后，maven会将spring相关的一系列jar包下载到你的本地maven仓库中，这里会用到junit，所以不要把junit的依赖删除。</p>
 <p><strong>创建接口和实现类</strong></p>
 <p>创建一个接口和该接口的实现类：</p>
-<pre><code>package com.monkey1024.service;
+<pre><code>package cn.cosher.service;
 
 public interface StudentService {
 
     void study();
 }</code></pre><p>实现类：</p>
-<pre><code>package com.monkey1024.service.impl;
-
-import com.monkey1024.service.StudentService;
-
+<pre><code>package cn.cosher.service.impl;
+import cn.cosher.service.StudentService;
 public class StudentServiceImpl implements StudentService {
-
     @Override
     public void study() {
         System.out.println(&quot;好好学习天天向上&quot;);
@@ -146,7 +143,7 @@ public class StudentServiceImpl implements StudentService {
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
 
-    &lt;bean id=&quot;studentService&quot; class=&quot;com.monkey1024.service.impl.StudentServiceImpl&quot;/&gt;
+    &lt;bean id=&quot;studentService&quot; class=&quot;cn.cosher.service.impl.StudentServiceImpl&quot;/&gt;
 
 
 &lt;/beans&gt;</code></pre><p>在该spring配置文件中添加bean标签：</p>
@@ -156,10 +153,10 @@ public class StudentServiceImpl implements StudentService {
 </ul>
 <p><strong>创建测试类进行测试</strong><br>想要使用StudentService的话，需要开发者自己手动通过new关键字创建该接口实现类的对象。虽然使用了接口可以实现程序的解耦，但是实际上在代码中还是有new StudentServiceImpl的语句，这个地方还是存在一些耦合的。</p>
 <p>使用spring之后，在代码中通过spring获取StudentServiceImpl对象，这样子就去掉了之前代码中的耦合。</p>
-<pre><code>package com.monkey1024.test;
+<pre><code>package cn.cosher.test;
 
-import com.monkey1024.service.StudentService;
-import com.monkey1024.service.impl.StudentServiceImpl;
+import cn.cosher.service.StudentService;
+import cn.cosher.service.impl.StudentServiceImpl;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

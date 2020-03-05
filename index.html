@@ -66,6 +66,74 @@
     
     
     
+    <article id="post-Spring/三种工厂模式" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="https://cosher.gitee.io/blog/2020/03/05/Spring/%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"
+    >Spring ico</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time datetime="2020-03-05T07:30:25.130Z" itemprop="datePublished">2020-03-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="https://cosher.gitee.io/blog/categories/Java/">Java</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/tags/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" rel="tag">工厂模式</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+
+</article>
+    
     <article id="post-Spring/java代理模式静态代理和动态代理" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -390,21 +458,11 @@
 <li>FileSystemXmlApplicationContext<br>如果spring的配置文件不在类路径下，可以使用该来创建容器</li>
 </ul>
 <p><strong>BeanFactory接口</strong><br>我们还可以使用BeanFactory接口充当spring IOC容器的角色，BeanFactory是ApplicationContext的父接口。与ApplicationContext不同的是BeanFactory在读取配置文件之后不会创建里面bean的对象，而是在使用的时候才会创建。</p>
-<pre><code>&lt;span class=&quot;hljs-meta&quot;&gt;@Test&lt;/span&gt;
-&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;springType2&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;{
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void springType2()&#123;</span><br><span class="line"></span><br><span class="line">    DefaultListableBeanFactory factory &#x3D; new DefaultListableBeanFactory();</span><br><span class="line">    XmlBeanDefinitionReader reader &#x3D; new XmlBeanDefinitionReader(factory);</span><br><span class="line">    reader.loadBeanDefinitions(new FileSystemResource(&quot;F:\\monkey1024\\ssm\\learnspring\\src\\main\\resources\\applicationContext.xml&quot;));</span><br><span class="line">    &#x2F;&#x2F;当使用该bean的时候才会创建其对象</span><br><span class="line">    &#x2F;&#x2F;StudentService studentService &#x3D; (StudentService)factory.getBean(&quot;studentService&quot;);</span><br><span class="line">    &#x2F;&#x2F;studentService.study();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    DefaultListableBeanFactory factory = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; DefaultListableBeanFactory();
-    XmlBeanDefinitionReader reader = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; XmlBeanDefinitionReader(factory);
-    reader.loadBeanDefinitions(&lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; FileSystemResource(&lt;span class=&quot;hljs-string&quot;&gt;&quot;F:\\monkey1024\\ssm\\learnspring\\src\\main\\resources\\applicationContext.xml&quot;&lt;/span&gt;));
-    &lt;span class=&quot;hljs-comment&quot;&gt;//当使用该bean的时候才会创建其对象&lt;/span&gt;
-    &lt;span class=&quot;hljs-comment&quot;&gt;//StudentService studentService = (StudentService)factory.getBean(&quot;studentService&quot;);&lt;/span&gt;
-    &lt;span class=&quot;hljs-comment&quot;&gt;//studentService.study();&lt;/span&gt;
-}
-`&lt;/pre&gt;
+<h4 id="除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象："><a href="#除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：" class="headerlink" title="除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象："></a>除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BeanFactory xmlBeanDefinitionReader &#x3D; new XmlBeanFactory(new ClassPathResource(&quot;applicationContext.xml&quot;));</span><br></pre></td></tr></table></figure>
 
-除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：
-
-&lt;pre&gt;`BeanFactory xmlBeanDefinitionReader = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; XmlBeanFactory(&lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; ClassPathResource(&lt;span class=&quot;hljs-string&quot;&gt;&quot;applicationContext.xml&quot;&lt;/span&gt;));</code></pre><p>这种方式以及被spring标记为废弃的了。</p>
+<p>这种方式以及被spring标记为废弃的了。</p>
 <p><strong>用ApplicationContext还是BeanFactory？</strong><br>ApplicationContext提供了比BeanFactory更多的功能，在实际工作中除非特殊情况，例如你需要在一些小内存或者资源受限的机器运行程序，这个时候可以选择使用BeanFactory，此时事务的管理、AOP功能将会失效。因此，大部分情况下，建议使用ApplicationContext作为容器。</p>
 
       
@@ -492,18 +550,15 @@
 &lt;/dependency&gt;</code></pre><p>添加上面依赖之后，maven会将spring相关的一系列jar包下载到你的本地maven仓库中，这里会用到junit，所以不要把junit的依赖删除。</p>
 <p><strong>创建接口和实现类</strong></p>
 <p>创建一个接口和该接口的实现类：</p>
-<pre><code>package com.monkey1024.service;
+<pre><code>package cn.cosher.service;
 
 public interface StudentService {
 
     void study();
 }</code></pre><p>实现类：</p>
-<pre><code>package com.monkey1024.service.impl;
-
-import com.monkey1024.service.StudentService;
-
+<pre><code>package cn.cosher.service.impl;
+import cn.cosher.service.StudentService;
 public class StudentServiceImpl implements StudentService {
-
     @Override
     public void study() {
         System.out.println(&quot;好好学习天天向上&quot;);
@@ -520,7 +575,7 @@ public class StudentServiceImpl implements StudentService {
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
 
-    &lt;bean id=&quot;studentService&quot; class=&quot;com.monkey1024.service.impl.StudentServiceImpl&quot;/&gt;
+    &lt;bean id=&quot;studentService&quot; class=&quot;cn.cosher.service.impl.StudentServiceImpl&quot;/&gt;
 
 
 &lt;/beans&gt;</code></pre><p>在该spring配置文件中添加bean标签：</p>
@@ -530,10 +585,10 @@ public class StudentServiceImpl implements StudentService {
 </ul>
 <p><strong>创建测试类进行测试</strong><br>想要使用StudentService的话，需要开发者自己手动通过new关键字创建该接口实现类的对象。虽然使用了接口可以实现程序的解耦，但是实际上在代码中还是有new StudentServiceImpl的语句，这个地方还是存在一些耦合的。</p>
 <p>使用spring之后，在代码中通过spring获取StudentServiceImpl对象，这样子就去掉了之前代码中的耦合。</p>
-<pre><code>package com.monkey1024.test;
+<pre><code>package cn.cosher.test;
 
-import com.monkey1024.service.StudentService;
-import com.monkey1024.service.impl.StudentServiceImpl;
+import cn.cosher.service.StudentService;
+import cn.cosher.service.impl.StudentServiceImpl;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
