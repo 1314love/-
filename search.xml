@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Spring</title>
+    <title>Spring ico</title>
+    <url>https://cosher.gitee.io/blog/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/</url>
+    <content><![CDATA[<h3 id="ioc简介"><a href="#ioc简介" class="headerlink" title="ioc简介"></a>ioc简介</h3><p>控制反转（IoC，Inversion of Control），是一种思想。指的是将创建对象的操作权交给容器（例如spring），通过容器来装配和管理对象的创建，控制反转其实就是对这些对象控制权的反转，控制权由程序本身反转给了外部容器。<br>ioc是一种思想，有一些实现方式，其中较为常用的一种是依赖注入(Dependency Injection，简称DI)，依赖注入是指程序运行过程中，若需要调用另一个对象协助时，无须在代码中创建被调用者，而是依赖于外部容器，由外部容器创建后传递给程序。<br>依赖注入让 Spring 的Bean之间以配置文件的方式组织在一起，而不是以硬编码的方式耦合在一起。<br>在之前的第一个程序中实际上就是使用了依赖注入这种方式获取的StudentServiceImpl对象。</p>
+<p>ioc的另外一个实现方式就是依赖查找，（Dependency Lookup，DL），这里不进行讨论了。</p>
+<h3 id="第一个spring程序分析"><a href="#第一个spring程序分析" class="headerlink" title="第一个spring程序分析"></a>第一个spring程序分析</h3><p><strong>ApplicationContext接口</strong><br>在第一个spring程序中我们通过ApplicationContext接口获取到spring注入给程序的对象，这里ApplicationContext充当了spring IOC容器的角色，ApplicationContext使用了反射的方式创建bean对象，并且在读取配置文件之后将里面注册的bean全部创建对象。我们可以通过该接口的两个实现类来创建容器：</p>
+<ul>
+<li>ClassPathXmlApplicationContext<br>如果spring的配置文件在项目的类路径下，可以使用该类创建容器</li>
+<li>FileSystemXmlApplicationContext<br>如果spring的配置文件不在类路径下，可以使用该来创建容器</li>
+</ul>
+<p><strong>BeanFactory接口</strong><br>我们还可以使用BeanFactory接口充当spring IOC容器的角色，BeanFactory是ApplicationContext的父接口。与ApplicationContext不同的是BeanFactory在读取配置文件之后不会创建里面bean的对象，而是在使用的时候才会创建。</p>
+<pre><code>&lt;span class=&quot;hljs-meta&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;springType2&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;{
+
+    DefaultListableBeanFactory factory = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; DefaultListableBeanFactory();
+    XmlBeanDefinitionReader reader = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; XmlBeanDefinitionReader(factory);
+    reader.loadBeanDefinitions(&lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; FileSystemResource(&lt;span class=&quot;hljs-string&quot;&gt;&quot;F:\\monkey1024\\ssm\\learnspring\\src\\main\\resources\\applicationContext.xml&quot;&lt;/span&gt;));
+    &lt;span class=&quot;hljs-comment&quot;&gt;//当使用该bean的时候才会创建其对象&lt;/span&gt;
+    &lt;span class=&quot;hljs-comment&quot;&gt;//StudentService studentService = (StudentService)factory.getBean(&quot;studentService&quot;);&lt;/span&gt;
+    &lt;span class=&quot;hljs-comment&quot;&gt;//studentService.study();&lt;/span&gt;
+}
+`&lt;/pre&gt;
+
+除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：
+
+&lt;pre&gt;`BeanFactory xmlBeanDefinitionReader = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; XmlBeanFactory(&lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; ClassPathResource(&lt;span class=&quot;hljs-string&quot;&gt;&quot;applicationContext.xml&quot;&lt;/span&gt;));</code></pre><p>这种方式以及被spring标记为废弃的了。</p>
+<p><strong>用ApplicationContext还是BeanFactory？</strong><br>ApplicationContext提供了比BeanFactory更多的功能，在实际工作中除非特殊情况，例如你需要在一些小内存或者资源受限的机器运行程序，这个时候可以选择使用BeanFactory，此时事务的管理、AOP功能将会失效。因此，大部分情况下，建议使用ApplicationContext作为容器。</p>
+]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring</tag>
+        <tag>后端框架</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring 简介</title>
     <url>https://cosher.gitee.io/blog/2020/03/05/Spring/%E7%AE%80%E4%BB%8B/</url>
     <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="spring简介"><a href="#spring简介" class="headerlink" title="spring简介"></a>spring简介</h3><p>Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目，并且越来越多的开发者开始使用这些项目。spring的优点如下：</p>
 <ul>
@@ -102,11 +139,11 @@ public class Test01 {
     <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="Spring-是于-2003-年兴起的一个轻量级的Java-开发框架，创始人是Rod-Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目-spring-mvc-spring-boot-spring-cloud-spring-data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99-都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。"><a href="#Spring-是于-2003-年兴起的一个轻量级的Java-开发框架，创始人是Rod-Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目-spring-mvc-spring-boot-spring-cloud-spring-data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99-都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。" class="headerlink" title="Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目,spring mvc,spring boot,spring cloud, spring data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99%都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。"></a>Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的<a id="more"></a>，随着时代的发展，spring旗下发展了很多项目,spring mvc,spring boot,spring cloud, spring data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99%都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。</h3><h3 id="学习spring之前需要了解的设计模式："><a href="#学习spring之前需要了解的设计模式：" class="headerlink" title="学习spring之前需要了解的设计模式："></a>学习spring之前需要了解的设计模式：</h3><p><a href="">java代理模式静态代理和动态代理</a></p>
 <p><a href="">三种工厂模式</a></p>
 <ol>
-<li><a href="./简介">spring简介</a></li>
-<li><a href="#">spring中的ioc</a></li>
-<li><a href="#">bean的装配</a></li>
-<li><a href="#">spring的依赖注入</a></li>
-<li><a href="#">spring中的AOP</a></li>
+<li><a href="../简介">spring简介</a></li>
+<li><a href="../spring中的ioc">spring中的ioc</a></li>
+<li><a href="../bean的装配">bean的装配</a></li>
+<li><a href="./依赖注入">spring的依赖注入</a></li>
+<li><a href="./spring中的AOP">spring中的AOP</a></li>
 <li><a href="#">AspectJ对AOP的支持</a></li>
 <li><a href="#">spring在web中的使用</a></li>
 <li><a href="#">ssm（spring mvc+spring+mybatis）框架整合</a></li>

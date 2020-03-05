@@ -66,6 +66,98 @@
     
     
     
+    <article id="post-Spring/spring中的ioc" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="https://cosher.gitee.io/blog/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/"
+    >Spring ico</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/" class="article-date">
+  <time datetime="2020-03-05T07:13:49.672Z" itemprop="datePublished">2020-03-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="https://cosher.gitee.io/blog/categories/Spring/">Spring</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="ioc简介"><a href="#ioc简介" class="headerlink" title="ioc简介"></a>ioc简介</h3><p>控制反转（IoC，Inversion of Control），是一种思想。指的是将创建对象的操作权交给容器（例如spring），通过容器来装配和管理对象的创建，控制反转其实就是对这些对象控制权的反转，控制权由程序本身反转给了外部容器。<br>ioc是一种思想，有一些实现方式，其中较为常用的一种是依赖注入(Dependency Injection，简称DI)，依赖注入是指程序运行过程中，若需要调用另一个对象协助时，无须在代码中创建被调用者，而是依赖于外部容器，由外部容器创建后传递给程序。<br>依赖注入让 Spring 的Bean之间以配置文件的方式组织在一起，而不是以硬编码的方式耦合在一起。<br>在之前的第一个程序中实际上就是使用了依赖注入这种方式获取的StudentServiceImpl对象。</p>
+<p>ioc的另外一个实现方式就是依赖查找，（Dependency Lookup，DL），这里不进行讨论了。</p>
+<h3 id="第一个spring程序分析"><a href="#第一个spring程序分析" class="headerlink" title="第一个spring程序分析"></a>第一个spring程序分析</h3><p><strong>ApplicationContext接口</strong><br>在第一个spring程序中我们通过ApplicationContext接口获取到spring注入给程序的对象，这里ApplicationContext充当了spring IOC容器的角色，ApplicationContext使用了反射的方式创建bean对象，并且在读取配置文件之后将里面注册的bean全部创建对象。我们可以通过该接口的两个实现类来创建容器：</p>
+<ul>
+<li>ClassPathXmlApplicationContext<br>如果spring的配置文件在项目的类路径下，可以使用该类创建容器</li>
+<li>FileSystemXmlApplicationContext<br>如果spring的配置文件不在类路径下，可以使用该来创建容器</li>
+</ul>
+<p><strong>BeanFactory接口</strong><br>我们还可以使用BeanFactory接口充当spring IOC容器的角色，BeanFactory是ApplicationContext的父接口。与ApplicationContext不同的是BeanFactory在读取配置文件之后不会创建里面bean的对象，而是在使用的时候才会创建。</p>
+<pre><code>&lt;span class=&quot;hljs-meta&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;springType2&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;{
+
+    DefaultListableBeanFactory factory = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; DefaultListableBeanFactory();
+    XmlBeanDefinitionReader reader = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; XmlBeanDefinitionReader(factory);
+    reader.loadBeanDefinitions(&lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; FileSystemResource(&lt;span class=&quot;hljs-string&quot;&gt;&quot;F:\\monkey1024\\ssm\\learnspring\\src\\main\\resources\\applicationContext.xml&quot;&lt;/span&gt;));
+    &lt;span class=&quot;hljs-comment&quot;&gt;//当使用该bean的时候才会创建其对象&lt;/span&gt;
+    &lt;span class=&quot;hljs-comment&quot;&gt;//StudentService studentService = (StudentService)factory.getBean(&quot;studentService&quot;);&lt;/span&gt;
+    &lt;span class=&quot;hljs-comment&quot;&gt;//studentService.study();&lt;/span&gt;
+}
+`&lt;/pre&gt;
+
+除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：
+
+&lt;pre&gt;`BeanFactory xmlBeanDefinitionReader = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; XmlBeanFactory(&lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; ClassPathResource(&lt;span class=&quot;hljs-string&quot;&gt;&quot;applicationContext.xml&quot;&lt;/span&gt;));</code></pre><p>这种方式以及被spring标记为废弃的了。</p>
+<p><strong>用ApplicationContext还是BeanFactory？</strong><br>ApplicationContext提供了比BeanFactory更多的功能，在实际工作中除非特殊情况，例如你需要在一些小内存或者资源受限的机器运行程序，这个时候可以选择使用BeanFactory，此时事务的管理、AOP功能将会失效。因此，大部分情况下，建议使用ApplicationContext作为容器。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/tags/Spring/" rel="tag">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/tags/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag">后端框架</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+
+</article>
+    
     <article id="post-Spring/简介" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -75,7 +167,7 @@
        
 <h2 itemprop="name">
   <a class="article-title" href="https://cosher.gitee.io/blog/2020/03/05/Spring/%E7%AE%80%E4%BB%8B/"
-    >Spring</a
+    >Spring 简介</a
   >
 </h2>
   
