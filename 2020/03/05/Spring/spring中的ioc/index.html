@@ -50,7 +50,7 @@
     
     <div class="article-meta">
       <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/" class="article-date">
-  <time datetime="2020-03-05T07:13:49.672Z" itemprop="datePublished">2020-03-05</time>
+  <time datetime="2020-03-05T08:10:56.136Z" itemprop="datePublished">2020-03-05</time>
 </a>
       
   <div class="article-category">
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">700字</span>
+            <span class="post-count">699字</span>
         </span>
     </span>
 
@@ -108,7 +108,7 @@
 <li>FileSystemXmlApplicationContext<br>如果spring的配置文件不在类路径下，可以使用该来创建容器</li>
 </ul>
 <p><strong>BeanFactory接口</strong><br>我们还可以使用BeanFactory接口充当spring IOC容器的角色，BeanFactory是ApplicationContext的父接口。与ApplicationContext不同的是BeanFactory在读取配置文件之后不会创建里面bean的对象，而是在使用的时候才会创建。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void springType2()&#123;</span><br><span class="line"></span><br><span class="line">    DefaultListableBeanFactory factory &#x3D; new DefaultListableBeanFactory();</span><br><span class="line">    XmlBeanDefinitionReader reader &#x3D; new XmlBeanDefinitionReader(factory);</span><br><span class="line">    reader.loadBeanDefinitions(new FileSystemResource(&quot;F:\\monkey1024\\ssm\\learnspring\\src\\main\\resources\\applicationContext.xml&quot;));</span><br><span class="line">    &#x2F;&#x2F;当使用该bean的时候才会创建其对象</span><br><span class="line">    &#x2F;&#x2F;StudentService studentService &#x3D; (StudentService)factory.getBean(&quot;studentService&quot;);</span><br><span class="line">    &#x2F;&#x2F;studentService.study();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void springType2()&#123;</span><br><span class="line"></span><br><span class="line">    DefaultListableBeanFactory factory &#x3D; new DefaultListableBeanFactory();</span><br><span class="line">    XmlBeanDefinitionReader reader &#x3D; new XmlBeanDefinitionReader(factory);</span><br><span class="line">    reader.loadBeanDefinitions(new FileSystemResource(&quot;F:\\cosherm\\learnspring\\src\\main\\resources\\applicationContext.xml&quot;));</span><br><span class="line">    &#x2F;&#x2F;当使用该bean的时候才会创建其对象</span><br><span class="line">    &#x2F;&#x2F;StudentService studentService &#x3D; (StudentService)factory.getBean(&quot;studentService&quot;);</span><br><span class="line">    &#x2F;&#x2F;studentService.study();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象："><a href="#除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：" class="headerlink" title="除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象："></a>除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BeanFactory xmlBeanDefinitionReader &#x3D; new XmlBeanFactory(new ClassPathResource(&quot;applicationContext.xml&quot;));</span><br></pre></td></tr></table></figure>
 
@@ -188,19 +188,10 @@
   
   <nav class="article-nav">
     
-      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Spring
-          
-        </div>
-      </a>
     
-    
-      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/%E7%AE%80%E4%BB%8B/" class="article-nav-link">
+      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Spring 简介</div>
+        <div class="article-nav-title">Spring ico</div>
       </a>
     
   </nav>
