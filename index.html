@@ -186,102 +186,21 @@
 <p>代理模式分为两种：静态代理和动态代理。</p>
 <h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><p>代理类和相关的方法直接在代码中写死。下面以你看上了你女性朋友娜娜的闺蜜小曼举例：</p>
 <p>首先定义一个接口：</p>
-<pre><code>package cn.cosher.proxy.staticproxy;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 女神</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Beauty &#123;</span><br><span class="line">    void eat();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-&lt;span class=&quot;hljs-comment&quot;&gt;/**
- * 女神
- */&lt;/span&gt;
-&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Beauty&lt;/span&gt; {
+<pre><code>创建小曼的类并实现上面的接口：</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 你的目标对象小曼</span><br><span class="line"> * 你女性朋友娜娜的闺蜜</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class XiaoMan implements Beauty &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        System.out.println(&quot;小曼吃饭&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;eat&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;;
+<blockquote>
+<p>创建娜娜的类实现上面接口，娜娜是中间人，所以实现方式不太一样，这里的eat方法中要调用目标对象上的eat方法：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 中间人，你的女性朋友娜娜</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class NaNa implements Beauty &#123;</span><br><span class="line"></span><br><span class="line">    private Beauty beauty;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 通过构造方法传入目标对象</span><br><span class="line">     * @param beauty</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public NaNa(Beauty beauty) &#123;</span><br><span class="line">        this.beauty &#x3D; beauty;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        &#x2F;&#x2F;调用目标对象上的吃饭方法</span><br><span class="line">        beauty.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-}
-`&lt;/pre&gt;
-
-创建小曼的类并实现上面的接口：
-
-&lt;pre&gt;`&lt;span class=&quot;hljs-keyword&quot;&gt;package&lt;/span&gt; cn.cosher.proxy.staticproxy;
-
-&lt;span class=&quot;hljs-comment&quot;&gt;/**
- * 你的目标对象小曼
- * 你女性朋友娜娜的闺蜜
- */&lt;/span&gt;
-&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;XiaoMan&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Beauty&lt;/span&gt; &lt;/span&gt;{
-
-    &lt;span class=&quot;hljs-meta&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;eat&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;{
-        System.out.println(&lt;span class=&quot;hljs-string&quot;&gt;&quot;小曼吃饭&quot;&lt;/span&gt;);
-    }
-}
-`&lt;/pre&gt;
-
-创建娜娜的类实现上面接口，娜娜是中间人，所以实现方式不太一样，这里的eat方法中要调用目标对象上的eat方法：
-
-&lt;pre&gt;`&lt;span class=&quot;hljs-keyword&quot;&gt;package&lt;/span&gt; cn.cosher.proxy.staticproxy;
-
-&lt;span class=&quot;hljs-comment&quot;&gt;/**
- * 中间人，你的女性朋友娜娜
- */&lt;/span&gt;
-&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;NaNa&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Beauty&lt;/span&gt; &lt;/span&gt;{
-
-    &lt;span class=&quot;hljs-keyword&quot;&gt;private&lt;/span&gt; Beauty beauty;
-
-    &lt;span class=&quot;hljs-comment&quot;&gt;/**
-     * 通过构造方法传入目标对象
-     * &lt;span class=&quot;hljs-doctag&quot;&gt;@param&lt;/span&gt; beauty
-     */&lt;/span&gt;
-    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;NaNa&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(Beauty beauty)&lt;/span&gt; &lt;/span&gt;{
-        &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.beauty = beauty;
-    }
-
-    &lt;span class=&quot;hljs-meta&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;eat&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;{
-        &lt;span class=&quot;hljs-comment&quot;&gt;//调用目标对象上的吃饭方法&lt;/span&gt;
-        beauty.eat();
-    }
-}
-`&lt;/pre&gt;
-
-创建你的类，里面添加交朋友的方法：
-
-&lt;pre&gt;`package cn.cosher.proxy.staticproxy;
-
-&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;You&lt;/span&gt; {
-
-    &lt;span class=&quot;hljs-keyword&quot;&gt;private&lt;/span&gt; Beauty beauty;
-
-    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;You&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;Beauty beauty&lt;/span&gt;) &lt;/span&gt;{
-        &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.beauty = beauty;
-    }
-
-    &lt;span class=&quot;hljs-comment&quot;&gt;/**
-     * 交朋友
-     */&lt;/span&gt;
-    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;makeFriend&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;{
-        beauty.eat();
-    }
-}
-`&lt;/pre&gt;
-
-创建测试类：
-
-&lt;pre&gt;`&lt;span class=&quot;hljs-keyword&quot;&gt;package&lt;/span&gt; cn.cosher.proxy.staticproxy;
-
-&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Test&lt;/span&gt; &lt;/span&gt;{
-
-    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(String[] args)&lt;/span&gt; &lt;/span&gt;{
-        XiaoMan xiaoMan = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; XiaoMan();
-        NaNa naNa = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; NaNa(xiaoMan);
-        You you = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; You(naNa);
-
-        you.makeFriend();
-    }
-}
-`&lt;/pre&gt;
-
-### 动态代理
-
-动态代理它可以直接给某一个目标对象生成一个代理对象，而不需要代理类存在。动态代理与静态代理原理是一样的，只是它没有具体的代理类，直接在程序运行时动态生成了一个代理对象。
+<blockquote>
+<p>创建你的类，里面添加交朋友的方法：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">public class You &#123;</span><br><span class="line"></span><br><span class="line">    private Beauty beauty;</span><br><span class="line"></span><br><span class="line">    public You(Beauty beauty) &#123;</span><br><span class="line">        this.beauty &#x3D; beauty;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 交朋友</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void makeFriend() &#123;</span><br><span class="line">        beauty.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>创建测试类：</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        XiaoMan xiaoMan &#x3D; new XiaoMan();</span><br><span class="line">        NaNa naNa &#x3D; new NaNa(xiaoMan);</span><br><span class="line">        You you &#x3D; new You(naNa);</span><br><span class="line"></span><br><span class="line">        you.makeFriend();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><pre><code>动态代理它可以直接给某一个目标对象生成一个代理对象，而不需要代理类存在。动态代理与静态代理原理是一样的，只是它没有具体的代理类，直接在程序运行时动态生成了一个代理对象。
 
 动态代理的技术实现：</code></pre><ul>
 <li><p>JDK提供的动态代理，底层使用反射原理，只能创建接口的代理。</p>
@@ -301,88 +220,16 @@
 <li>Object[] args:当前被调用方法用到的参数</li>
 </ul>
 <p>只需要将之前的测试类中的代码修改为下面的内容即可：</p>
-<pre>`<span class="hljs-keyword">package</span> cn.cosher.proxy.staticproxy;
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import java.lang.reflect.InvocationHandler;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line">import java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Beauty xiaoMan &#x3D; new XiaoMan();</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;不需要自己创建代理了</span><br><span class="line">        &#x2F;&#x2F;NaNa naNa &#x3D; new NaNa(xiaoMan);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;由jdk动态的为你创建一个代理</span><br><span class="line">        Beauty proxy &#x3D; (Beauty)Proxy.newProxyInstance(xiaoMan.getClass().getClassLoader(), xiaoMan.getClass().getInterfaces(), new InvocationHandler() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">                System.out.println(&quot;吃饭之前的准备&quot;);</span><br><span class="line">                Object invoke &#x3D; method.invoke(xiaoMan);</span><br><span class="line">                System.out.println(&quot;吃饭之后的结果&quot;);</span><br><span class="line">                return invoke;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        You you &#x3D; new You(proxy);</span><br><span class="line"></span><br><span class="line">        you.makeFriend();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;
-<span class="hljs-keyword">import</span> java.lang.reflect.Method;
-<span class="hljs-keyword">import</span> java.lang.reflect.Proxy;
-
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>{
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
-        Beauty xiaoMan = <span class="hljs-keyword">new</span> XiaoMan();
-
-        <span class="hljs-comment">//不需要自己创建代理了</span>
-        <span class="hljs-comment">//NaNa naNa = new NaNa(xiaoMan);</span>
-
-        <span class="hljs-comment">//由jdk动态的为你创建一个代理</span>
-        Beauty proxy = (Beauty)Proxy.newProxyInstance(xiaoMan.getClass().getClassLoader(), xiaoMan.getClass().getInterfaces(), <span class="hljs-keyword">new</span> InvocationHandler() {
-            <span class="hljs-meta">@Override</span>
-            <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
-                System.out.println(<span class="hljs-string">"吃饭之前的准备"</span>);
-                Object invoke = method.invoke(xiaoMan);
-                System.out.println(<span class="hljs-string">"吃饭之后的结果"</span>);
-                <span class="hljs-keyword">return</span> invoke;
-            }
-        });
-
-        You you = <span class="hljs-keyword">new</span> You(proxy);
-
-        you.makeFriend();
-    }
-}
-`</pre>
-
-<p><strong>调用有参数的方法</strong><br>在彼此认识之后，你打算送小曼礼物，此时将之前的代码稍作修改：</p>
-<p>在接口中新增gift方法，count表示礼物的数量：</p>
-<pre>` <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">gift</span><span class="hljs-params">(<span class="hljs-keyword">int</span> count)</span></span>;
-`</pre>
-
-<p>在XiaoMan的类中添加gift方法的重写：</p>
-<pre>`@<span class="hljs-function">Override
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">gift</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> count</span>) </span>{
-    System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">"收到"</span> + count + <span class="hljs-string">"礼物"</span>);
-}
-`</pre>
+<p><strong>调用有参数的方法</strong><br>在彼此认识之后，你打算送小曼礼物，此时将之前的代码稍作修改：<br>在接口中新增gift方法，count表示礼物的数量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void gift(int count);</span><br></pre></td></tr></table></figure>
 
 <p>在You类中添加show方法用来送礼物：</p>
-<pre>`<span class="hljs-comment">/**
- * 展示
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span>{
-    beauty.gift(<span class="hljs-number">10</span>);
-}
-`</pre>
-
 <p>修改之前的测试类如下，送礼物的时候，为了感谢代理人，所以每次会把礼物分一半给代理人：</p>
-<pre>`Beauty xiaoMan = <span class="hljs-keyword">new</span> XiaoMan();
-
-    <span class="hljs-comment">//不需要自己创建代理了</span>
-    <span class="hljs-comment">//NaNa naNa = new NaNa(xiaoMan);</span>
-
-    <span class="hljs-comment">//由jdk动态的为你创建一个代理</span>
-    Beauty proxy = (Beauty)<span class="hljs-built_in">Proxy</span>.newProxyInstance(xiaoMan.getClass().getClassLoader(), xiaoMan.getClass().getInterfaces(), <span class="hljs-keyword">new</span> InvocationHandler() {
-        @Override
-        public <span class="hljs-built_in">Object</span> invoke(<span class="hljs-built_in">Object</span> proxy, Method method, <span class="hljs-built_in">Object</span>[] args) throws Throwable {
-            System.out.println(<span class="hljs-string">"准备"</span>);
-            <span class="hljs-built_in">Object</span> invoke = <span class="hljs-literal">null</span>;
-            <span class="hljs-keyword">if</span> (<span class="hljs-string">"gift"</span>.equals(method.getName())){
-                invoke = method.invoke(xiaoMan,<span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>[]{(Integer)args[<span class="hljs-number">0</span>]/<span class="hljs-number">2</span>});
-            }<span class="hljs-keyword">else</span>{
-                invoke = method.invoke(xiaoMan);
-            }
-
-            System.out.println(<span class="hljs-string">"结果"</span>);
-            <span class="hljs-keyword">return</span> invoke;
-        }
-    });
-
-    You you = <span class="hljs-keyword">new</span> You(proxy);
-
-    you.makeFriend();
-    you.show();</li>
-</ul>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Beauty xiaoMan &#x3D; new XiaoMan();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;不需要自己创建代理了</span><br><span class="line">    &#x2F;&#x2F;NaNa naNa &#x3D; new NaNa(xiaoMan);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;由jdk动态的为你创建一个代理</span><br><span class="line">    Beauty proxy &#x3D; (Beauty)Proxy.newProxyInstance(xiaoMan.getClass().getClassLoader(), xiaoMan.getClass().getInterfaces(), new InvocationHandler() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">            System.out.println(&quot;准备&quot;);</span><br><span class="line">            Object invoke &#x3D; null;</span><br><span class="line">            if (&quot;gift&quot;.equals(method.getName()))&#123;</span><br><span class="line">                invoke &#x3D; method.invoke(xiaoMan,new Object[]&#123;(Integer)args[0]&#x2F;2&#125;);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                invoke &#x3D; method.invoke(xiaoMan);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            System.out.println(&quot;结果&quot;);</span><br><span class="line">            return invoke;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    You you &#x3D; new You(proxy);</span><br><span class="line"></span><br><span class="line">    you.makeFriend();</span><br><span class="line">    you.show();</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
