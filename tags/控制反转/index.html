@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Spring ico |  金洋
+    Tag: 控制反转 |  金洋
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -32,180 +32,55 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-Spring/spring中的ioc" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
+  <article class="articles">
     
-    <header class="article-header">
+    
+    <h1 class="page-type-title">#&nbsp控制反转</h1>
+    
+    
+  
+  
+  
+  
+  
+  
+  <div class="archives-wrap">
+    <div class="archive-year-wrap">
+      <a href="https://cosher.gitee.io/blog/'/archives/2020" class="archive-year">2020</a>
+    </div>
+    <div class="archives">
+      
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="https://cosher.gitee.io/blog/'/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/" class="archive-article-date">
+  <time datetime="2020-03-05T08:10:56.136Z" itemprop="datePublished">03/05</time>
+</a>
        
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Spring ico
-</h1>
+<h2 itemprop="name">
+  <a class="archive-article-title" href="https://cosher.gitee.io/blog/'/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/"
+    >Spring ico</a
+  >
+</h2>
   
 
     </header>
     
-
     
-    <div class="article-meta">
-      <a href="https://cosher.gitee.io/blog/'/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/" class="article-date">
-  <time datetime="2020-03-05T08:10:56.136Z" itemprop="datePublished">2020-03-05</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="https://cosher.gitee.io/blog/'/categories/Spring/">Spring</a>
-  </div>
-
-      
-      
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">699字</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
-        </span>
-    </span>
-</div>
-
-      
-    </div>
-    
-
-    
-    
-    <div class="tocbot"></div>
-
-
-
-
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h3 id="ioc简介"><a href="#ioc简介" class="headerlink" title="ioc简介"></a>ioc简介</h3><p>控制反转（IoC，Inversion of Control），是一种思想。指的是将创建对象的操作权交给容器（例如spring）<a id="more"></a>，通过容器来装配和管理对象的创建，控制反转其实就是对这些对象控制权的反转，控制权由程序本身反转给了外部容器。<br>ioc是一种思想，有一些实现方式，其中较为常用的一种是依赖注入(Dependency Injection，简称DI)，依赖注入是指程序运行过程中，若需要调用另一个对象协助时，无须在代码中创建被调用者，而是依赖于外部容器，由外部容器创建后传递给程序。<br>依赖注入让 Spring 的Bean之间以配置文件的方式组织在一起，而不是以硬编码的方式耦合在一起。<br>在之前的第一个程序中实际上就是使用了依赖注入这种方式获取的StudentServiceImpl对象。</p>
-<p>ioc的另外一个实现方式就是依赖查找，（Dependency Lookup，DL），这里不进行讨论了。</p>
-<h3 id="第一个spring程序分析"><a href="#第一个spring程序分析" class="headerlink" title="第一个spring程序分析"></a>第一个spring程序分析</h3><p><strong>ApplicationContext接口</strong><br>在第一个spring程序中我们通过ApplicationContext接口获取到spring注入给程序的对象，这里ApplicationContext充当了spring IOC容器的角色，ApplicationContext使用了反射的方式创建bean对象，并且在读取配置文件之后将里面注册的bean全部创建对象。我们可以通过该接口的两个实现类来创建容器：</p>
-<ul>
-<li>ClassPathXmlApplicationContext<br>如果spring的配置文件在项目的类路径下，可以使用该类创建容器</li>
-<li>FileSystemXmlApplicationContext<br>如果spring的配置文件不在类路径下，可以使用该来创建容器</li>
-</ul>
-<p><strong>BeanFactory接口</strong><br>我们还可以使用BeanFactory接口充当spring IOC容器的角色，BeanFactory是ApplicationContext的父接口。与ApplicationContext不同的是BeanFactory在读取配置文件之后不会创建里面bean的对象，而是在使用的时候才会创建。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void springType2()&#123;</span><br><span class="line"></span><br><span class="line">    DefaultListableBeanFactory factory &#x3D; new DefaultListableBeanFactory();</span><br><span class="line">    XmlBeanDefinitionReader reader &#x3D; new XmlBeanDefinitionReader(factory);</span><br><span class="line">    reader.loadBeanDefinitions(new FileSystemResource(&quot;D:\cosher\learnspring\src\main\resources\applicationContext.xml&quot;));</span><br><span class="line">    &#x2F;&#x2F;当使用该bean的时候才会创建其对象</span><br><span class="line">    &#x2F;&#x2F;StudentService studentService &#x3D; (StudentService)factory.getBean(&quot;studentService&quot;);</span><br><span class="line">    &#x2F;&#x2F;studentService.study();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象："><a href="#除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：" class="headerlink" title="除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象："></a>除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BeanFactory xmlBeanDefinitionReader &#x3D; new XmlBeanFactory(new ClassPathResource(&quot;applicationContext.xml&quot;));</span><br></pre></td></tr></table></figure>
-
-<p>这种方式以及被spring标记为废弃的了。</p>
-<p><strong>用ApplicationContext还是BeanFactory？</strong><br>ApplicationContext提供了比BeanFactory更多的功能，在实际工作中除非特殊情况，例如你需要在一些小内存或者资源受限的机器运行程序，这个时候可以选择使用BeanFactory，此时事务的管理、AOP功能将会失效。因此，大部分情况下，建议使用ApplicationContext作为容器。</p>
-
-      
-      <!-- reward -->
-      
-      <div id="reward-btn">
-        打赏
-      </div>
-      
-    </div>
-    
-    
-    <footer class="article-footer">
-      
-          
-<div class="share-btn">
-      <span class="share-sns share-outer">
-        <i class="ri-share-forward-line"></i>
-        分享
-      </span>
-      <div class="share-wrap">
-        <i class="arrow"></i>
-        <div class="share-icons">
-          
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="ri-weibo-fill"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="ri-wechat-fill"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="ri-qq-fill"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="ri-douban-line"></i>
-          </a>
-          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a> -->
-          
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="ri-facebook-circle-fill"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="ri-twitter-fill"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="ri-google-fill"></i>
-          </a>
-        </div>
-      </div>
-</div>
-
-<div class="wx-share-modal">
-    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://cosher.gitee.io/blog/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div id="share-mask"></div>
-      
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/'/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/'/tags/Spring/" rel="tag">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/'/tags/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag">后端框架</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/'/tags/%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC/" rel="tag">控制反转</a></li></ul>
 
-
-    </footer>
-
+    
   </div>
-
-  
-  
-  <nav class="article-nav">
-    
-    
-      <a href="https://cosher.gitee.io/blog/'/2020/03/05/Spring/%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Spring ico</div>
-      </a>
-    
-  </nav>
-
-
-  
-
-  
-
-  
-  
-  
-
 </article>
+      
+      
+    </div>
+  </div>
+  
+  
+
+  
 </section>
       <footer class="footer">
 </footer>
@@ -324,30 +199,6 @@
 </script>
 
 
-
-
-<script src="https://cosher.gitee.io/blog/'/js/tocbot.min.js"></script>
-
-<script>
-  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
-  tocbot.init({
-    tocSelector: '.tocbot',
-    contentSelector: '.article-entry',
-    headingSelector: 'h1, h2, h3, h4, h5, h6',
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer:'main',
-    positionFixedSelector: '.tocbot',
-    positionFixedClass: 'is-position-fixed',
-    fixedSidebarOffset: 'auto',
-    onClick: (e) => {
-      $('.toc-link').removeClass('is-active-link');
-      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
-      $(e.target.hash).scrollIntoView();
-      return false;
-    }
-  });
-</script>
 
 
 <script>

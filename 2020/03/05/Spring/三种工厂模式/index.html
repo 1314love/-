@@ -13,7 +13,7 @@
   <link rel="shortcut icon" href="/blog/images/ayer.png" />
   
   
-<link rel="stylesheet" href="https://cosher.gitee.io/blog/css/main.css">
+<link rel="stylesheet" href="https://cosher.gitee.io/blog/'/css/main.css">
 
   
 <script src="https://cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
@@ -23,7 +23,7 @@
 
   
 
-<link rel="alternate" href="https://cosher.gitee.io/blog/atom.xml" title="金洋" type="application/atom+xml">
+<link rel="alternate" href="https://cosher.gitee.io/blog/'/atom.xml" title="金洋" type="application/atom+xml">
 </head>
 
 </html>
@@ -49,12 +49,12 @@
 
     
     <div class="article-meta">
-      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="article-date">
+      <a href="https://cosher.gitee.io/blog/'/2020/03/05/Spring/%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="article-date">
   <time datetime="2020-03-05T07:30:25.130Z" itemprop="datePublished">2020-03-05</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="https://cosher.gitee.io/blog/categories/Java/">Java</a>
+    <a class="article-category-link" href="https://cosher.gitee.io/blog/'/categories/Java/">Java</a>
   </div>
 
       
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">0字</span>
+            <span class="post-count">1k字</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">4分钟</span>
         </span>
     </span>
 </div>
@@ -84,6 +84,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -98,7 +100,44 @@
       
 
       
-      
+      <h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="什么是工厂模式"><a href="#什么是工厂模式" class="headerlink" title="什么是工厂模式"></a>什么是工厂模式</h2><blockquote>
+<ul>
+<li>工厂模式（Factory Pattern）是 Java 中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。<a id="more"></a></li>
+<li>在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。</li>
+</ul>
+</blockquote>
+<h2 id="工程模式分类"><a href="#工程模式分类" class="headerlink" title="工程模式分类"></a>工程模式分类</h2><p><em>1. 简单工厂模式（静态工厂）</em></p>
+<blockquote>
+<ul>
+<li>定义：由一个工厂对象决定创建出哪一种产品类的实例</li>
+<li>优点：只需要传入一个正确的参数，就可以获取你所需要的对象而不需要知道其创建的细节</li>
+<li>缺点：工厂类的职责相对过重，增加新的产品需要修改工厂类的判断逻辑，违背了开闭原则</li>
+</ul>
+</blockquote>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p><strong>先创建一个iPhone手机的接口</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface IPhone &#123;</span><br><span class="line">    void play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>在创建一部新的苹果X</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class IPhoneX implements IPhone &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        System.out.println(&quot;IPhoneX&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建iPhone 8 plus系列手机</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class IPhone8Plus implements IPhone &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        System.out.println(&quot;IPhone8Plus&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建生产苹果手机的工厂</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class IPhoneFactory &#123;</span><br><span class="line">    public static IPhone produce(String model)&#123;</span><br><span class="line">		return &quot;iPhoneX&quot;.equalsIgnoreCase(model)?(new IPhoneX())</span><br><span class="line">			?&quot;iPhone8Plus&quot;.equalsIgnoreCase(model)</span><br><span class="line">			?(new IPhone8Plus()):null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建测试类</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void PhoneText()&#123;</span><br><span class="line">	IPhone iPhone &#x3D; IPhoneFactory.produce(&quot;iPhoneX&quot;);</span><br><span class="line">	iPhone.play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>2. 工厂方法模式</em><br>工厂方法模式的实质是定义一个用于创建对象的接口，然后让实现这个接口的类来决定创建哪个类的对象。</p>
+<p>这里还是以生产iPhone X和iPhone 8 plus手机为例。</p>
+<p><strong>创建iphone接口：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface IPhone &#123;</span><br><span class="line">    void play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建iPhone 8 plus手机：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class IPhone8Plus implements IPhone &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        System.out.println(&quot;IPhone8Plus&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建生产手机的大工厂：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface IPhoneFactory &#123;</span><br><span class="line">    IPhone produce();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建生产IPhoneX的工厂：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class IPhoneXFactory implements IPhoneFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public IPhoneX produce() &#123;</span><br><span class="line">        return new IPhoneX();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>3. 抽象工厂</em></p>
+<p><strong>抽象工厂定义</strong><br>抽象工厂模式提供了一种方式，可以将同一产品族的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。客户端程序不需要知道（或关心）它从这些内部的工厂方法中获得对象的具体类型，因为客户端程序仅使用这些对象的通用接口。抽象工厂模式将一组对象的实现细节与他们的一般使用分离开来。</p>
+<p>产品族就是一系列相关的产品，比如生产手机，还需要生产相应的充电器，手机和充电器就相当于是两个产品族，手机可以生产苹果手机、小米手机等，充电器可以生产苹果充电器、小米充电器等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 充电器</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Charger &#123;</span><br><span class="line">    void charge();</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 手机</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Telephone &#123;</span><br><span class="line"></span><br><span class="line">    void play();</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 苹果手机充电器</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class AppleCharger implements Charger &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void charge() &#123;</span><br><span class="line">        System.out.println(&quot;给苹果手机充电&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 小米手机充电器</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class XiaoMiCharger implements Charger &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void charge() &#123;</span><br><span class="line">        System.out.println(&quot;给小米手机充电&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * IPhoneX手机</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class IPhoneX implements Telephone &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        System.out.println(&quot;IPhoneX&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * XiaoMi8手机</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class XiaoMi8 implements Telephone &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        System.out.println(&quot;小米8&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 生产手机的大工厂</span><br><span class="line"> *</span><br><span class="line"> * 要生产手机和相应的充电器</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface PhoneFactory &#123;</span><br><span class="line">    Charger produceCharger();</span><br><span class="line">    Telephone producePhone();</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 生产苹果手机的工厂</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class IPhoneXFactory implements PhoneFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Charger produceCharger() &#123;</span><br><span class="line">        return new AppleCharger();</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public Telephone producePhone() &#123;</span><br><span class="line">        return new IPhoneX();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;创建生产小米8手机的工厂：</span><br><span class="line">public class XiaoMi8Factory implements PhoneFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Charger produceCharger() &#123;</span><br><span class="line">        return new XiaoMiCharger();</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public Telephone producePhone() &#123;</span><br><span class="line">        return new XiaoMi8();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;创建测试</span><br><span class="line">public class Test03 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        IPhoneXFactory iPhoneXFactory &#x3D; new IPhoneXFactory();</span><br><span class="line">        Charger charger &#x3D; iPhoneXFactory.produceCharger();</span><br><span class="line">        Telephone iPhoneX &#x3D; iPhoneXFactory.producePhone();</span><br><span class="line">        charger.charge();</span><br><span class="line">        iPhoneX.play();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -161,7 +200,7 @@
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/tags/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" rel="tag">工厂模式</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/'/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/'/tags/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" rel="tag">工厂模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/'/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
 
 
     </footer>
@@ -172,7 +211,7 @@
   
   <nav class="article-nav">
     
-      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/" class="article-nav-link">
+      <a href="https://cosher.gitee.io/blog/'/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -182,7 +221,7 @@
       </a>
     
     
-      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="article-nav-link">
+      <a href="https://cosher.gitee.io/blog/'/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title">Spring</div>
       </a>
@@ -213,25 +252,25 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="https://cosher.gitee.io/blog/"><img src="/blog/images/ayer.png" alt="金洋"></a>
+    <a href="https://cosher.gitee.io/blog/'/"><img src="/blog/images/ayer.png" alt="金洋"></a>
   </div>
   
   <ul class="nav nav-main">
     
     <li class="nav-item">
-      <a class="nav-item-link" href="https://cosher.gitee.io/blog/">主页</a>
+      <a class="nav-item-link" href="https://cosher.gitee.io/blog/'/">主页</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="https://cosher.gitee.io/blog/archives">归档</a>
+      <a class="nav-item-link" href="https://cosher.gitee.io/blog/'/archives">归档</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="https://cosher.gitee.io/blog/categories">分类</a>
+      <a class="nav-item-link" href="https://cosher.gitee.io/blog/'/categories">分类</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="https://cosher.gitee.io/blog/tags">标签</a>
+      <a class="nav-item-link" href="https://cosher.gitee.io/blog/'/tags">标签</a>
     </li>
     
   </ul>
@@ -245,7 +284,7 @@
       </a>
       
       
-      <a class="nav-item-link" target="_blank" href="https://cosher.gitee.io/blog/atom.xml" title="RSS Feed">
+      <a class="nav-item-link" target="_blank" href="https://cosher.gitee.io/blog/'/atom.xml" title="RSS Feed">
         <i class="ri-rss-line"></i>
       </a>
       
@@ -268,13 +307,13 @@
   <div class="reward-box">
     
     <div class="reward-item">
-      <img class="reward-img" src="https://cosher.gitee.io/blog/images/alipay.jpg">
+      <img class="reward-img" src="https://cosher.gitee.io/blog/'/images/alipay.jpg">
       <span class="reward-type">支付宝</span>
     </div>
     
     
     <div class="reward-item">
-      <img class="reward-img" src="https://cosher.gitee.io/blog/images/wechat.jpg">
+      <img class="reward-img" src="https://cosher.gitee.io/blog/'/images/wechat.jpg">
       <span class="reward-type">微信</span>
     </div>
     
@@ -284,7 +323,7 @@
 <script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
 
 
-<script src="https://cosher.gitee.io/blog/js/jquery.justifiedGallery.min.js"></script>
+<script src="https://cosher.gitee.io/blog/'/js/jquery.justifiedGallery.min.js"></script>
 
 
 <script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
@@ -294,11 +333,11 @@
 
 
 
-<script src="https://cosher.gitee.io/blog/fancybox/jquery.fancybox.min.js"></script>
+<script src="https://cosher.gitee.io/blog/'/fancybox/jquery.fancybox.min.js"></script>
 
 
 
-<script src="https://cosher.gitee.io/blog/title_text.js"></script>
+<script src="https://cosher.gitee.io/blog/'/title_text.js"></script>
 
 
 <script>
@@ -319,7 +358,7 @@
 
 
 
-<script src="https://cosher.gitee.io/blog/js/tocbot.min.js"></script>
+<script src="https://cosher.gitee.io/blog/'/js/tocbot.min.js"></script>
 
 <script>
   // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
@@ -350,7 +389,7 @@
 </script>
 
 
-<script src="https://cosher.gitee.io/blog/js/ayer.js"></script>
+<script src="https://cosher.gitee.io/blog/'/js/ayer.js"></script>
 
 
 <script src="https://cdn.bootcss.com/jquery-modal/0.9.2/jquery.modal.min.js"></script>
@@ -488,7 +527,74 @@
 
 
     
+    <div id='music'>
+	<link rel="stylesheet" href="css/solid.css">
+	<link rel="stylesheet" href="css/fontawesome.css">
+	<link rel="stylesheet" href="css/style.css"
+	<script src="https://cdn.bootcss.com/jquery/3.4.1/core.js"></script>
+	<div id="dowebok">
+	        <div id="bg-artwork"></div>
+	        <div id="bg-layer"></div>
+	        <div id="player">
+	            <div id="player-track">
+	                <div id="album-name"></div>
+	                <div id="track-name"></div>
+	                <div id="track-time">
+	                    <div id="current-time"></div>
+	                    <div id="track-length"></div>
+	                </div>
+	                <div id="s-area">
+	                    <div id="ins-time"></div>
+	                    <div id="s-hover"></div>
+	                    <div id="seek-bar"></div>
+	                </div>
+	            </div>
+	            <div id="player-content">
+	                <div id="album-art">
+	                    <img src="images/1.jpg" class="active" id="album-pic">
+	                    <div id="buffer-box">加载中...</div>
+	                </div>
+	                <div id="player-controls">
+	                    <div class="control">
+	                        <div class="button" id="play-previous">
+	                            <i class="fas fa-backward"></i>
+	                        </div>
+	                    </div>
+	                    <div class="control">
+	                        <div class="button" id="play-pause-button">
+	                            <i class="fas fa-play"></i>
+	                        </div>
+	                    </div>
+	                    <div class="control">
+	                        <div class="button" id="play-next">
+	                            <i class="fas fa-forward"></i>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	<script src="js/index.js"></script>
+	<div style="position:absolute;left:expression(1-900);top:expression(3-999);"> </div>
+	
+	<script language="javascript" type="text/javascript">
+	document.write("<div style=\"position: absolute; top: -993px;left: -985px;\">")
+	</script>
+	
+	 <script language="javascript" type="text/javascript">document.write("<\/div>")</script>
+	</div>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        left: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
   </div>
-<script src="https://cosher.gitee.io/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="https://cosher.gitee.io/blog/'/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>

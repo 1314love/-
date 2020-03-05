@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Spring ico</title>
-    <url>https://cosher.gitee.io/blog/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/</url>
+    <url>https://cosher.gitee.io/blog/&#39;/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/</url>
     <content><![CDATA[<h3 id="ioc简介"><a href="#ioc简介" class="headerlink" title="ioc简介"></a>ioc简介</h3><p>控制反转（IoC，Inversion of Control），是一种思想。指的是将创建对象的操作权交给容器（例如spring）<a id="more"></a>，通过容器来装配和管理对象的创建，控制反转其实就是对这些对象控制权的反转，控制权由程序本身反转给了外部容器。<br>ioc是一种思想，有一些实现方式，其中较为常用的一种是依赖注入(Dependency Injection，简称DI)，依赖注入是指程序运行过程中，若需要调用另一个对象协助时，无须在代码中创建被调用者，而是依赖于外部容器，由外部容器创建后传递给程序。<br>依赖注入让 Spring 的Bean之间以配置文件的方式组织在一起，而不是以硬编码的方式耦合在一起。<br>在之前的第一个程序中实际上就是使用了依赖注入这种方式获取的StudentServiceImpl对象。</p>
 <p>ioc的另外一个实现方式就是依赖查找，（Dependency Lookup，DL），这里不进行讨论了。</p>
 <h3 id="第一个spring程序分析"><a href="#第一个spring程序分析" class="headerlink" title="第一个spring程序分析"></a>第一个spring程序分析</h3><p><strong>ApplicationContext接口</strong><br>在第一个spring程序中我们通过ApplicationContext接口获取到spring注入给程序的对象，这里ApplicationContext充当了spring IOC容器的角色，ApplicationContext使用了反射的方式创建bean对象，并且在读取配置文件之后将里面注册的bean全部创建对象。我们可以通过该接口的两个实现类来创建容器：</p>
@@ -11,7 +11,7 @@
 <li>FileSystemXmlApplicationContext<br>如果spring的配置文件不在类路径下，可以使用该来创建容器</li>
 </ul>
 <p><strong>BeanFactory接口</strong><br>我们还可以使用BeanFactory接口充当spring IOC容器的角色，BeanFactory是ApplicationContext的父接口。与ApplicationContext不同的是BeanFactory在读取配置文件之后不会创建里面bean的对象，而是在使用的时候才会创建。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void springType2()&#123;</span><br><span class="line"></span><br><span class="line">    DefaultListableBeanFactory factory &#x3D; new DefaultListableBeanFactory();</span><br><span class="line">    XmlBeanDefinitionReader reader &#x3D; new XmlBeanDefinitionReader(factory);</span><br><span class="line">    reader.loadBeanDefinitions(new FileSystemResource(&quot;F:\\cosherm\\learnspring\\src\\main\\resources\\applicationContext.xml&quot;));</span><br><span class="line">    &#x2F;&#x2F;当使用该bean的时候才会创建其对象</span><br><span class="line">    &#x2F;&#x2F;StudentService studentService &#x3D; (StudentService)factory.getBean(&quot;studentService&quot;);</span><br><span class="line">    &#x2F;&#x2F;studentService.study();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void springType2()&#123;</span><br><span class="line"></span><br><span class="line">    DefaultListableBeanFactory factory &#x3D; new DefaultListableBeanFactory();</span><br><span class="line">    XmlBeanDefinitionReader reader &#x3D; new XmlBeanDefinitionReader(factory);</span><br><span class="line">    reader.loadBeanDefinitions(new FileSystemResource(&quot;D:\cosher\learnspring\src\main\resources\applicationContext.xml&quot;));</span><br><span class="line">    &#x2F;&#x2F;当使用该bean的时候才会创建其对象</span><br><span class="line">    &#x2F;&#x2F;StudentService studentService &#x3D; (StudentService)factory.getBean(&quot;studentService&quot;);</span><br><span class="line">    &#x2F;&#x2F;studentService.study();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象："><a href="#除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：" class="headerlink" title="除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象："></a>除了上面的方法之外，有些旧点的教程中会使用下面方式创建BeanFactory对象：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BeanFactory xmlBeanDefinitionReader &#x3D; new XmlBeanFactory(new ClassPathResource(&quot;applicationContext.xml&quot;));</span><br></pre></td></tr></table></figure>
 
@@ -25,23 +25,62 @@
         <tag>Java</tag>
         <tag>Spring</tag>
         <tag>后端框架</tag>
+        <tag>控制反转</tag>
       </tags>
   </entry>
   <entry>
     <title>Spring ico</title>
-    <url>https://cosher.gitee.io/blog/2020/03/05/Spring/%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[]]></content>
+    <url>https://cosher.gitee.io/blog/&#39;/2020/03/05/Spring/%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="什么是工厂模式"><a href="#什么是工厂模式" class="headerlink" title="什么是工厂模式"></a>什么是工厂模式</h2><blockquote>
+<ul>
+<li>工厂模式（Factory Pattern）是 Java 中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。<a id="more"></a></li>
+<li>在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。</li>
+</ul>
+</blockquote>
+<h2 id="工程模式分类"><a href="#工程模式分类" class="headerlink" title="工程模式分类"></a>工程模式分类</h2><p><em>1. 简单工厂模式（静态工厂）</em></p>
+<blockquote>
+<ul>
+<li>定义：由一个工厂对象决定创建出哪一种产品类的实例</li>
+<li>优点：只需要传入一个正确的参数，就可以获取你所需要的对象而不需要知道其创建的细节</li>
+<li>缺点：工厂类的职责相对过重，增加新的产品需要修改工厂类的判断逻辑，违背了开闭原则</li>
+</ul>
+</blockquote>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p><strong>先创建一个iPhone手机的接口</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IPhone &#123;</span><br><span class="line">    void play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>在创建一部新的苹果X</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class IPhoneX implements IPhone &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        System.out.println(&quot;IPhoneX&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建iPhone 8 plus系列手机</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class IPhone8Plus implements IPhone &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        System.out.println(&quot;IPhone8Plus&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建生产苹果手机的工厂</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class IPhoneFactory &#123;</span><br><span class="line">    public static IPhone produce(String model)&#123;</span><br><span class="line">		return &quot;iPhoneX&quot;.equalsIgnoreCase(model)?(new IPhoneX())</span><br><span class="line">			?&quot;iPhone8Plus&quot;.equalsIgnoreCase(model)</span><br><span class="line">			?(new IPhone8Plus()):null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建测试类</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void PhoneText()&#123;</span><br><span class="line">	IPhone iPhone &#x3D; IPhoneFactory.produce(&quot;iPhoneX&quot;);</span><br><span class="line">	iPhone.play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>2. 工厂方法模式</em><br>工厂方法模式的实质是定义一个用于创建对象的接口，然后让实现这个接口的类来决定创建哪个类的对象。</p>
+<p>这里还是以生产iPhone X和iPhone 8 plus手机为例。</p>
+<p><strong>创建iphone接口：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IPhone &#123;</span><br><span class="line">    void play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建iPhone 8 plus手机：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class IPhone8Plus implements IPhone &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        System.out.println(&quot;IPhone8Plus&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建生产手机的大工厂：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface IPhoneFactory &#123;</span><br><span class="line">    IPhone produce();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>创建生产IPhoneX的工厂：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class IPhoneXFactory implements IPhoneFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public IPhoneX produce() &#123;</span><br><span class="line">        return new IPhoneX();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>3. 抽象工厂</em></p>
+<p><strong>抽象工厂定义</strong><br>抽象工厂模式提供了一种方式，可以将同一产品族的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。客户端程序不需要知道（或关心）它从这些内部的工厂方法中获得对象的具体类型，因为客户端程序仅使用这些对象的通用接口。抽象工厂模式将一组对象的实现细节与他们的一般使用分离开来。</p>
+<p>产品族就是一系列相关的产品，比如生产手机，还需要生产相应的充电器，手机和充电器就相当于是两个产品族，手机可以生产苹果手机、小米手机等，充电器可以生产苹果充电器、小米充电器等</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 充电器</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Charger &#123;</span><br><span class="line">    void charge();</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 手机</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Telephone &#123;</span><br><span class="line"></span><br><span class="line">    void play();</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 苹果手机充电器</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class AppleCharger implements Charger &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void charge() &#123;</span><br><span class="line">        System.out.println(&quot;给苹果手机充电&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 小米手机充电器</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class XiaoMiCharger implements Charger &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void charge() &#123;</span><br><span class="line">        System.out.println(&quot;给小米手机充电&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * IPhoneX手机</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class IPhoneX implements Telephone &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        System.out.println(&quot;IPhoneX&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * XiaoMi8手机</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class XiaoMi8 implements Telephone &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        System.out.println(&quot;小米8&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 生产手机的大工厂</span><br><span class="line"> *</span><br><span class="line"> * 要生产手机和相应的充电器</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface PhoneFactory &#123;</span><br><span class="line">    Charger produceCharger();</span><br><span class="line">    Telephone producePhone();</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 生产苹果手机的工厂</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class IPhoneXFactory implements PhoneFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Charger produceCharger() &#123;</span><br><span class="line">        return new AppleCharger();</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public Telephone producePhone() &#123;</span><br><span class="line">        return new IPhoneX();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;创建生产小米8手机的工厂：</span><br><span class="line">public class XiaoMi8Factory implements PhoneFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Charger produceCharger() &#123;</span><br><span class="line">        return new XiaoMiCharger();</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public Telephone producePhone() &#123;</span><br><span class="line">        return new XiaoMi8();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;创建测试</span><br><span class="line">public class Test03 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        IPhoneXFactory iPhoneXFactory &#x3D; new IPhoneXFactory();</span><br><span class="line">        Charger charger &#x3D; iPhoneXFactory.produceCharger();</span><br><span class="line">        Telephone iPhoneX &#x3D; iPhoneXFactory.producePhone();</span><br><span class="line">        charger.charge();</span><br><span class="line">        iPhoneX.play();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java</category>
       </categories>
       <tags>
         <tag>Java</tag>
         <tag>工厂模式</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
     <title>Spring</title>
-    <url>https://cosher.gitee.io/blog/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
+    <url>https://cosher.gitee.io/blog/&#39;/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
     <content><![CDATA[<h3 id="代理模式简介"><a href="#代理模式简介" class="headerlink" title="代理模式简介"></a>代理模式简介</h3><p>代理模式（proxy）指的是为一个对象提供一个代理以控制外界对该对象的访问，比如有些情况下对<a id="more"></a>象A不能直接访问对象B，此时可以为对象B创建一个代理C，然后对象A通过访问代理C来间接访问对象B。比如你看上了你女性朋友的闺蜜，此时你可以通过你的朋友来跟她闺蜜进行一些沟通。<br>有的时候我们希望增强某个方法的功能，但是有不方便直接修改该方法，此时也可通过代理来实现，即在该方法执行的前后做一些事情。比如你要打官司，但是法律上的事情你可能不清楚，此时需要请一名代理律师，让这个代理律师帮助你去做一些事情。</p>
 <p>代理的模式的优点：</p>
 <ul>
@@ -53,18 +92,16 @@
 <p>首先定义一个接口：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 女神</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Beauty &#123;</span><br><span class="line">    void eat();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<pre><code>创建小曼的类并实现上面的接口：</code></pre><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 你的目标对象小曼</span><br><span class="line"> * 你女性朋友娜娜的闺蜜</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class XiaoMan implements Beauty &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        System.out.println(&quot;小曼吃饭&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建小曼的类并实现上面的接口：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 你的目标对象小曼</span><br><span class="line"> * 你女性朋友娜娜的闺蜜</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class XiaoMan implements Beauty &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        System.out.println(&quot;小曼吃饭&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
 <p>创建娜娜的类实现上面接口，娜娜是中间人，所以实现方式不太一样，这里的eat方法中要调用目标对象上的eat方法：</p>
-</blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 中间人，你的女性朋友娜娜</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class NaNa implements Beauty &#123;</span><br><span class="line"></span><br><span class="line">    private Beauty beauty;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 通过构造方法传入目标对象</span><br><span class="line">     * @param beauty</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public NaNa(Beauty beauty) &#123;</span><br><span class="line">        this.beauty &#x3D; beauty;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        &#x2F;&#x2F;调用目标对象上的吃饭方法</span><br><span class="line">        beauty.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
 <p>创建你的类，里面添加交朋友的方法：</p>
-</blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">public class You &#123;</span><br><span class="line"></span><br><span class="line">    private Beauty beauty;</span><br><span class="line"></span><br><span class="line">    public You(Beauty beauty) &#123;</span><br><span class="line">        this.beauty &#x3D; beauty;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 交朋友</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void makeFriend() &#123;</span><br><span class="line">        beauty.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>创建测试类：</code></pre><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        XiaoMan xiaoMan &#x3D; new XiaoMan();</span><br><span class="line">        NaNa naNa &#x3D; new NaNa(xiaoMan);</span><br><span class="line">        You you &#x3D; new You(naNa);</span><br><span class="line"></span><br><span class="line">        you.makeFriend();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建测试类：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        XiaoMan xiaoMan &#x3D; new XiaoMan();</span><br><span class="line">        NaNa naNa &#x3D; new NaNa(xiaoMan);</span><br><span class="line">        You you &#x3D; new You(naNa);</span><br><span class="line"></span><br><span class="line">        you.makeFriend();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><pre><code>动态代理它可以直接给某一个目标对象生成一个代理对象，而不需要代理类存在。动态代理与静态代理原理是一样的，只是它没有具体的代理类，直接在程序运行时动态生成了一个代理对象。
 
 动态代理的技术实现：</code></pre><ul>
@@ -104,7 +141,7 @@
   </entry>
   <entry>
     <title>Spring 简介</title>
-    <url>https://cosher.gitee.io/blog/2020/03/05/Spring/%E7%AE%80%E4%BB%8B/</url>
+    <url>https://cosher.gitee.io/blog/&#39;/2020/03/05/Spring/%E7%AE%80%E4%BB%8B/</url>
     <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="spring简介"><a href="#spring简介" class="headerlink" title="spring简介"></a>spring简介</h3><p>Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的<a id="more"></a>，随着时代的发展，spring旗下发展了很多项目，并且越来越多的开发者开始使用这些项目。spring的优点如下：</p>
 <ul>
 <li>方便解耦，简化开发（高内聚低耦合），可以将对象依赖关系的维护交给Spring管理。</li>
@@ -197,8 +234,9 @@ public class Test01 {
   </entry>
   <entry>
     <title>Spring</title>
-    <url>https://cosher.gitee.io/blog/2020/03/05/Spring/index/</url>
-    <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="Spring-是于-2003-年兴起的一个轻量级的Java-开发框架，创始人是Rod-Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目-spring-mvc-spring-boot-spring-cloud-spring-data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99-都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。"><a href="#Spring-是于-2003-年兴起的一个轻量级的Java-开发框架，创始人是Rod-Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目-spring-mvc-spring-boot-spring-cloud-spring-data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99-都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。" class="headerlink" title="Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目,spring mvc,spring boot,spring cloud, spring data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99%都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。"></a>Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的<a id="more"></a>，随着时代的发展，spring旗下发展了很多项目,spring mvc,spring boot,spring cloud, spring data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99%都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。</h3><h3 id="学习spring之前需要了解的设计模式："><a href="#学习spring之前需要了解的设计模式：" class="headerlink" title="学习spring之前需要了解的设计模式："></a>学习spring之前需要了解的设计模式：</h3><p><a href="./java代理模式静态代理和动态代理">java代理模式静态代理和动态代理</a><br><a href="./三种工厂模式">三种工厂模式</a></p>
+    <url>https://cosher.gitee.io/blog/&#39;/2020/03/05/Spring/index/</url>
+    <content><![CDATA[<h1 id="Spring-目录"><a href="#Spring-目录" class="headerlink" title="Spring 目录"></a>Spring 目录</h1><p><strong>Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的<a id="more"></a>，随着时代的发展，spring旗下发展了很多项目,spring mvc,spring boot,spring cloud, spring data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99%都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。</strong></p>
+<h3 id="学习spring之前需要了解的设计模式："><a href="#学习spring之前需要了解的设计模式：" class="headerlink" title="学习spring之前需要了解的设计模式："></a>学习spring之前需要了解的设计模式：</h3><p><a href="./java代理模式静态代理和动态代理">java代理模式静态代理和动态代理</a><br><a href="./三种工厂模式">三种工厂模式</a></p>
 <ol>
 <li><a href="../简介">spring简介</a></li>
 <li><a href="../spring中的ioc">spring中的ioc</a></li>

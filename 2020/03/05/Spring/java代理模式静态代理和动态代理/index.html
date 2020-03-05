@@ -13,7 +13,7 @@
   <link rel="shortcut icon" href="/blog/images/ayer.png" />
   
   
-<link rel="stylesheet" href="https://cosher.gitee.io/blog/css/main.css">
+<link rel="stylesheet" href="https://cosher.gitee.io/blog/'/css/main.css">
 
   
 <script src="https://cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
@@ -23,7 +23,7 @@
 
   
 
-<link rel="alternate" href="https://cosher.gitee.io/blog/atom.xml" title="金洋" type="application/atom+xml">
+<link rel="alternate" href="https://cosher.gitee.io/blog/'/atom.xml" title="金洋" type="application/atom+xml">
 </head>
 
 </html>
@@ -49,12 +49,12 @@
 
     
     <div class="article-meta">
-      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="article-date">
+      <a href="https://cosher.gitee.io/blog/'/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="article-date">
   <time datetime="2020-03-05T07:22:10.419Z" itemprop="datePublished">2020-03-05</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="https://cosher.gitee.io/blog/categories/Java/">Java</a>
+    <a class="article-category-link" href="https://cosher.gitee.io/blog/'/categories/Java/">Java</a>
   </div>
 
       
@@ -111,18 +111,16 @@
 <p>首先定义一个接口：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 女神</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Beauty &#123;</span><br><span class="line">    void eat();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<pre><code>创建小曼的类并实现上面的接口：</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 你的目标对象小曼</span><br><span class="line"> * 你女性朋友娜娜的闺蜜</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class XiaoMan implements Beauty &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        System.out.println(&quot;小曼吃饭&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建小曼的类并实现上面的接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 你的目标对象小曼</span><br><span class="line"> * 你女性朋友娜娜的闺蜜</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class XiaoMan implements Beauty &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        System.out.println(&quot;小曼吃饭&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
 <p>创建娜娜的类实现上面接口，娜娜是中间人，所以实现方式不太一样，这里的eat方法中要调用目标对象上的eat方法：</p>
-</blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 中间人，你的女性朋友娜娜</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class NaNa implements Beauty &#123;</span><br><span class="line"></span><br><span class="line">    private Beauty beauty;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 通过构造方法传入目标对象</span><br><span class="line">     * @param beauty</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public NaNa(Beauty beauty) &#123;</span><br><span class="line">        this.beauty &#x3D; beauty;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        &#x2F;&#x2F;调用目标对象上的吃饭方法</span><br><span class="line">        beauty.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
 <p>创建你的类，里面添加交朋友的方法：</p>
-</blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">public class You &#123;</span><br><span class="line"></span><br><span class="line">    private Beauty beauty;</span><br><span class="line"></span><br><span class="line">    public You(Beauty beauty) &#123;</span><br><span class="line">        this.beauty &#x3D; beauty;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 交朋友</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void makeFriend() &#123;</span><br><span class="line">        beauty.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>创建测试类：</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        XiaoMan xiaoMan &#x3D; new XiaoMan();</span><br><span class="line">        NaNa naNa &#x3D; new NaNa(xiaoMan);</span><br><span class="line">        You you &#x3D; new You(naNa);</span><br><span class="line"></span><br><span class="line">        you.makeFriend();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建测试类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package cn.cosher.proxy.staticproxy;</span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        XiaoMan xiaoMan &#x3D; new XiaoMan();</span><br><span class="line">        NaNa naNa &#x3D; new NaNa(xiaoMan);</span><br><span class="line">        You you &#x3D; new You(naNa);</span><br><span class="line"></span><br><span class="line">        you.makeFriend();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><pre><code>动态代理它可以直接给某一个目标对象生成一个代理对象，而不需要代理类存在。动态代理与静态代理原理是一样的，只是它没有具体的代理类，直接在程序运行时动态生成了一个代理对象。
 
 动态代理的技术实现：</code></pre><ul>
@@ -215,7 +213,7 @@
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/tags/Java/" rel="tag">Java</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="https://cosher.gitee.io/blog/'/tags/Java/" rel="tag">Java</a></li></ul>
 
 
     </footer>
@@ -226,7 +224,7 @@
   
   <nav class="article-nav">
     
-      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="article-nav-link">
+      <a href="https://cosher.gitee.io/blog/'/2020/03/05/Spring/%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -236,7 +234,7 @@
       </a>
     
     
-      <a href="https://cosher.gitee.io/blog/2020/03/05/Spring/%E7%AE%80%E4%BB%8B/" class="article-nav-link">
+      <a href="https://cosher.gitee.io/blog/'/2020/03/05/Spring/%E7%AE%80%E4%BB%8B/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title">Spring 简介</div>
       </a>
@@ -267,25 +265,25 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="https://cosher.gitee.io/blog/"><img src="/blog/images/ayer.png" alt="金洋"></a>
+    <a href="https://cosher.gitee.io/blog/'/"><img src="/blog/images/ayer.png" alt="金洋"></a>
   </div>
   
   <ul class="nav nav-main">
     
     <li class="nav-item">
-      <a class="nav-item-link" href="https://cosher.gitee.io/blog/">主页</a>
+      <a class="nav-item-link" href="https://cosher.gitee.io/blog/'/">主页</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="https://cosher.gitee.io/blog/archives">归档</a>
+      <a class="nav-item-link" href="https://cosher.gitee.io/blog/'/archives">归档</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="https://cosher.gitee.io/blog/categories">分类</a>
+      <a class="nav-item-link" href="https://cosher.gitee.io/blog/'/categories">分类</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="https://cosher.gitee.io/blog/tags">标签</a>
+      <a class="nav-item-link" href="https://cosher.gitee.io/blog/'/tags">标签</a>
     </li>
     
   </ul>
@@ -299,7 +297,7 @@
       </a>
       
       
-      <a class="nav-item-link" target="_blank" href="https://cosher.gitee.io/blog/atom.xml" title="RSS Feed">
+      <a class="nav-item-link" target="_blank" href="https://cosher.gitee.io/blog/'/atom.xml" title="RSS Feed">
         <i class="ri-rss-line"></i>
       </a>
       
@@ -322,13 +320,13 @@
   <div class="reward-box">
     
     <div class="reward-item">
-      <img class="reward-img" src="https://cosher.gitee.io/blog/images/alipay.jpg">
+      <img class="reward-img" src="https://cosher.gitee.io/blog/'/images/alipay.jpg">
       <span class="reward-type">支付宝</span>
     </div>
     
     
     <div class="reward-item">
-      <img class="reward-img" src="https://cosher.gitee.io/blog/images/wechat.jpg">
+      <img class="reward-img" src="https://cosher.gitee.io/blog/'/images/wechat.jpg">
       <span class="reward-type">微信</span>
     </div>
     
@@ -338,7 +336,7 @@
 <script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
 
 
-<script src="https://cosher.gitee.io/blog/js/jquery.justifiedGallery.min.js"></script>
+<script src="https://cosher.gitee.io/blog/'/js/jquery.justifiedGallery.min.js"></script>
 
 
 <script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
@@ -348,11 +346,11 @@
 
 
 
-<script src="https://cosher.gitee.io/blog/fancybox/jquery.fancybox.min.js"></script>
+<script src="https://cosher.gitee.io/blog/'/fancybox/jquery.fancybox.min.js"></script>
 
 
 
-<script src="https://cosher.gitee.io/blog/title_text.js"></script>
+<script src="https://cosher.gitee.io/blog/'/title_text.js"></script>
 
 
 <script>
@@ -373,7 +371,7 @@
 
 
 
-<script src="https://cosher.gitee.io/blog/js/tocbot.min.js"></script>
+<script src="https://cosher.gitee.io/blog/'/js/tocbot.min.js"></script>
 
 <script>
   // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
@@ -404,7 +402,7 @@
 </script>
 
 
-<script src="https://cosher.gitee.io/blog/js/ayer.js"></script>
+<script src="https://cosher.gitee.io/blog/'/js/ayer.js"></script>
 
 
 <script src="https://cdn.bootcss.com/jquery-modal/0.9.2/jquery.modal.min.js"></script>
@@ -542,7 +540,74 @@
 
 
     
+    <div id='music'>
+	<link rel="stylesheet" href="css/solid.css">
+	<link rel="stylesheet" href="css/fontawesome.css">
+	<link rel="stylesheet" href="css/style.css"
+	<script src="https://cdn.bootcss.com/jquery/3.4.1/core.js"></script>
+	<div id="dowebok">
+	        <div id="bg-artwork"></div>
+	        <div id="bg-layer"></div>
+	        <div id="player">
+	            <div id="player-track">
+	                <div id="album-name"></div>
+	                <div id="track-name"></div>
+	                <div id="track-time">
+	                    <div id="current-time"></div>
+	                    <div id="track-length"></div>
+	                </div>
+	                <div id="s-area">
+	                    <div id="ins-time"></div>
+	                    <div id="s-hover"></div>
+	                    <div id="seek-bar"></div>
+	                </div>
+	            </div>
+	            <div id="player-content">
+	                <div id="album-art">
+	                    <img src="images/1.jpg" class="active" id="album-pic">
+	                    <div id="buffer-box">加载中...</div>
+	                </div>
+	                <div id="player-controls">
+	                    <div class="control">
+	                        <div class="button" id="play-previous">
+	                            <i class="fas fa-backward"></i>
+	                        </div>
+	                    </div>
+	                    <div class="control">
+	                        <div class="button" id="play-pause-button">
+	                            <i class="fas fa-play"></i>
+	                        </div>
+	                    </div>
+	                    <div class="control">
+	                        <div class="button" id="play-next">
+	                            <i class="fas fa-forward"></i>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	<script src="js/index.js"></script>
+	<div style="position:absolute;left:expression(1-900);top:expression(3-999);"> </div>
+	
+	<script language="javascript" type="text/javascript">
+	document.write("<div style=\"position: absolute; top: -993px;left: -985px;\">")
+	</script>
+	
+	 <script language="javascript" type="text/javascript">document.write("<\/div>")</script>
+	</div>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        left: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
   </div>
-<script src="https://cosher.gitee.io/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="https://cosher.gitee.io/blog/'/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>

@@ -1,26 +1,114 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-  <meta charset="UTF-8">
-  <title>404</title>
+	<head>
+		<meta charset="UTF-8">
+		<title>404 Not Found 404 - Who turned off the light?</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
-  <meta name="keywords" content="Hexo,404,Design">
-  <meta name="description" content="Tribute Forrest Gump">
-  <link rel="stylesheet" href="/css/404.css">
-<link rel="alternate" href="https://cosher.gitee.io/blog/atom.xml" title="金洋" type="application/atom+xml">
+		<style type="text/css">
+			body {
+				background-color: black;
+				color: white;
+				font-family: Sans-Serif;
+				padding: 2%;
+			}
+
+			.center-text {
+				text-align: center;
+			}
+
+			#heading {
+				font-family: 'Creepster', cursive;
+				font-size: 5em
+			}
+
+			.eyes {
+				width: 5em;
+				height: 5em;
+				border-radius: 50%;
+				background-color: white;
+				margin: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				animation: blinking 3s ease-out 2 5s;
+
+			}
+
+			#eye-container {
+				display: flex;
+				justify-content: center;
+				margin-bottom: 5%;
+			}
+
+			.pupils {
+				width: 1em;
+				height: 1em;
+				border-radius: 50%;
+				position: absolute;
+				background-color: black;
+				animation: moving-pups 2.5s cubic-bezier(.43, -0.45, .45, 1.42) infinite;
+			}
+
+			@keyframes moving-pups {
+				0% {
+					left: 14%;
+				}
+
+				50% {
+					left: 70%;
+				}
+
+				100% {
+					left: 14%;
+				}
+			}
+
+			@keyframes blinking {
+				0% {
+					transform: rotateX(0deg);
+				}
+
+				20% {
+					transform: rotateX(90deg);
+				}
+
+				60% {
+					transform: rotateX(45deg);
+				}
+
+				70% {
+					transform: rotateX(30deg);
+				}
+
+				80% {
+					transform: rotateX(0deg);
+				}
+
+				100% {
+					transform: rotateX(0deg);
+				}
+			}
+		</style>
+	<link rel="alternate" href="https://cosher.gitee.io/blog/'/atom.xml" title="金洋" type="application/atom+xml">
 </head>
-<body>
-<div class="notfound">
-  <a class="notfound-link" href="/">
-    <img width="30" src="data:image/svg+xml;base64,PHN2ZyB0PSIxNTYyODQyNjI3NDA5IiB2aWV3Qm94PSIwIDAgMTAyNCAxMDI0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgcC1pZD0iNTIxNDgiIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48cGF0aCBkPSJNMTk0LjYgNDc5LjFoNzQ5LjF2NTcuNkgxODYuNEw1MjggODc4LjMgNDg3LjMgOTE5IDEyMSA1NTIuNyA4MC4zIDUxMmw0MDctNDA3IDQwLjcgNDAuN3oiIGZpbGw9IiIgcC1pZD0iNTIxNDkiLz48L3N2Zz4=">
-  </a>
-  <figure class="forrestgump">
-    <figcaption>
-      <h1 style="color: #6b0b0c;">404<br>Not Found!</h1>
-      <h3 style="color: #14206a;">Life was like a box of chocolates, you never know what you're going to get.</h3>
-    </figcaption>
-    <img src="/images/forrestgump.png">
-  </figure>
-</div>
-<script src="https://cosher.gitee.io/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+	<body>
+		<!-- partial:index.partial.html -->
+		<link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
+		<div id="heading-container">
+			<h1 id="heading" class="center-text">404 NOT FOUND</h1>
+		</div>
+		<div id="eye-container">
+			<div class="eyes" id="left-eye">
+				<div class="pupils" id="left-pupil"></div>
+			</div>
+			<div class="eyes" id="right-eye">
+				<div class="pupils" id="right-pupil"></div>
+			</div>
+		</div>
+		<div id="error-container" class="center-text">
+			<h2 id="error">WHO TURNED OFF THE LIGHT?</h2>
+			<p>Waterver you're looking for you're not gonna find it here.</p>
+		</div>
+	<script src="https://cosher.gitee.io/blog/'/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
