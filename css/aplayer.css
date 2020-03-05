@@ -1,8 +1,8 @@
 body{
-	background-image: url('/blog/images/sjbg.jpg');
+	background-image: url('/images/blog/sjbg.jpg');
 }
 @media screen and (min-width: 600px) {
     body {
-        background-image: url('/blog/images/bg.jpg');
+        background-image: url('/images/blog/bg.jpg');
     }
 }
