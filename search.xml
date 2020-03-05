@@ -15,7 +15,7 @@
   <entry>
     <title>Spring</title>
     <url>https://cosher.gitee.io/blog/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<h3 id="代理模式简介"><a href="#代理模式简介" class="headerlink" title="代理模式简介"></a>代理模式简介</h3><p>代理模式（proxy）指的是为一个对象提供一个代理以控制外界对该对象的访问，比如有些情况下对象A不能直接访问对象B，此时可以为对象B创建一个代理C，然后对象A通过访问代理C来间接访问对象B。比如你看上了你女性朋友的闺蜜，此时你可以通过你的朋友来跟她闺蜜进行一些沟通。<br>有的时候我们希望增强某个方法的功能，但是有不方便直接修改该方法，此时也可通过代理来实现，即在该方法执行的前后做一些事情。比如你要打官司，但是法律上的事情你可能不清楚，此时需要请一名代理律师，让这个代理律师帮助你去做一些事情。</p>
+    <content><![CDATA[<h3 id="代理模式简介"><a href="#代理模式简介" class="headerlink" title="代理模式简介"></a>代理模式简介</h3><p>代理模式（proxy）指的是为一个对象提供一个代理以控制外界对该对象的访问，比如有些情况下对<a id="more"></a>象A不能直接访问对象B，此时可以为对象B创建一个代理C，然后对象A通过访问代理C来间接访问对象B。比如你看上了你女性朋友的闺蜜，此时你可以通过你的朋友来跟她闺蜜进行一些沟通。<br>有的时候我们希望增强某个方法的功能，但是有不方便直接修改该方法，此时也可通过代理来实现，即在该方法执行的前后做一些事情。比如你要打官司，但是法律上的事情你可能不清楚，此时需要请一名代理律师，让这个代理律师帮助你去做一些事情。</p>
 <p>代理的模式的优点：</p>
 <ul>
 <li>提高程序的扩展性和可复用性</li>
@@ -78,7 +78,7 @@
   <entry>
     <title>Spring ico</title>
     <url>https://cosher.gitee.io/blog/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/</url>
-    <content><![CDATA[<h3 id="ioc简介"><a href="#ioc简介" class="headerlink" title="ioc简介"></a>ioc简介</h3><p>控制反转（IoC，Inversion of Control），是一种思想。指的是将创建对象的操作权交给容器（例如spring），通过容器来装配和管理对象的创建，控制反转其实就是对这些对象控制权的反转，控制权由程序本身反转给了外部容器。<br>ioc是一种思想，有一些实现方式，其中较为常用的一种是依赖注入(Dependency Injection，简称DI)，依赖注入是指程序运行过程中，若需要调用另一个对象协助时，无须在代码中创建被调用者，而是依赖于外部容器，由外部容器创建后传递给程序。<br>依赖注入让 Spring 的Bean之间以配置文件的方式组织在一起，而不是以硬编码的方式耦合在一起。<br>在之前的第一个程序中实际上就是使用了依赖注入这种方式获取的StudentServiceImpl对象。</p>
+    <content><![CDATA[<h3 id="ioc简介"><a href="#ioc简介" class="headerlink" title="ioc简介"></a>ioc简介</h3><p>控制反转（IoC，Inversion of Control），是一种思想。指的是将创建对象的操作权交给容器（例如spring）<a id="more"></a>，通过容器来装配和管理对象的创建，控制反转其实就是对这些对象控制权的反转，控制权由程序本身反转给了外部容器。<br>ioc是一种思想，有一些实现方式，其中较为常用的一种是依赖注入(Dependency Injection，简称DI)，依赖注入是指程序运行过程中，若需要调用另一个对象协助时，无须在代码中创建被调用者，而是依赖于外部容器，由外部容器创建后传递给程序。<br>依赖注入让 Spring 的Bean之间以配置文件的方式组织在一起，而不是以硬编码的方式耦合在一起。<br>在之前的第一个程序中实际上就是使用了依赖注入这种方式获取的StudentServiceImpl对象。</p>
 <p>ioc的另外一个实现方式就是依赖查找，（Dependency Lookup，DL），这里不进行讨论了。</p>
 <h3 id="第一个spring程序分析"><a href="#第一个spring程序分析" class="headerlink" title="第一个spring程序分析"></a>第一个spring程序分析</h3><p><strong>ApplicationContext接口</strong><br>在第一个spring程序中我们通过ApplicationContext接口获取到spring注入给程序的对象，这里ApplicationContext充当了spring IOC容器的角色，ApplicationContext使用了反射的方式创建bean对象，并且在读取配置文件之后将里面注册的bean全部创建对象。我们可以通过该接口的两个实现类来创建容器：</p>
 <ul>
@@ -105,7 +105,7 @@
   <entry>
     <title>Spring 简介</title>
     <url>https://cosher.gitee.io/blog/2020/03/05/Spring/%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="spring简介"><a href="#spring简介" class="headerlink" title="spring简介"></a>spring简介</h3><p>Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目，并且越来越多的开发者开始使用这些项目。spring的优点如下：</p>
+    <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="spring简介"><a href="#spring简介" class="headerlink" title="spring简介"></a>spring简介</h3><p>Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的<a id="more"></a>，随着时代的发展，spring旗下发展了很多项目，并且越来越多的开发者开始使用这些项目。spring的优点如下：</p>
 <ul>
 <li>方便解耦，简化开发（高内聚低耦合），可以将对象依赖关系的维护交给Spring管理。</li>
 <li>IOC（Inversion of Control）控制反转，对象的创建由spring完成，并将创建好的对象注入给使用者。</li>
