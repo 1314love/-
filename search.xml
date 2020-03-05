@@ -1,6 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Spring</title>
+    <url>https://cosher.gitee.io/blog/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<h3 id="代理模式简介"><a href="#代理模式简介" class="headerlink" title="代理模式简介"></a>代理模式简介</h3><p>代理模式（proxy）指的是为一个对象提供一个代理以控制外界对该对象的访问，比如有些情况下对象A不能直接访问对象B，此时可以为对象B创建一个代理C，然后对象A通过访问代理C来间接访问对象B。比如你看上了你女性朋友的闺蜜，此时你可以通过你的朋友来跟她闺蜜进行一些沟通。<br>有的时候我们希望增强某个方法的功能，但是有不方便直接修改该方法，此时也可通过代理来实现，即在该方法执行的前后做一些事情。比如你要打官司，但是法律上的事情你可能不清楚，此时需要请一名代理律师，让这个代理律师帮助你去做一些事情。</p>
+<p>代理的模式的优点：</p>
+<ul>
+<li>提高程序的扩展性和可复用性</li>
+<li>保护目标对象</li>
+</ul>
+<p>代理模式分为两种：静态代理和动态代理。</p>
+<h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><p>代理类和相关的方法直接在代码中写死。下面以你看上了你女性朋友娜娜的闺蜜小曼举例：</p>
+<p>首先定义一个接口：</p>
+<pre><code>package cn.cosher.proxy.staticproxy;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;/**
+ * 女神
+ */&lt;/span&gt;
+&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Beauty&lt;/span&gt; {
+
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;eat&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;;
+
+}
+`&lt;/pre&gt;
+
+创建小曼的类并实现上面的接口：
+
+&lt;pre&gt;`&lt;span class=&quot;hljs-keyword&quot;&gt;package&lt;/span&gt; cn.cosher.proxy.staticproxy;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;/**
+ * 你的目标对象小曼
+ * 你女性朋友娜娜的闺蜜
+ */&lt;/span&gt;
+&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;XiaoMan&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Beauty&lt;/span&gt; &lt;/span&gt;{
+
+    &lt;span class=&quot;hljs-meta&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;eat&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;{
+        System.out.println(&lt;span class=&quot;hljs-string&quot;&gt;&quot;小曼吃饭&quot;&lt;/span&gt;);
+    }
+}
+`&lt;/pre&gt;
+
+创建娜娜的类实现上面接口，娜娜是中间人，所以实现方式不太一样，这里的eat方法中要调用目标对象上的eat方法：
+
+&lt;pre&gt;`&lt;span class=&quot;hljs-keyword&quot;&gt;package&lt;/span&gt; cn.cosher.proxy.staticproxy;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;/**
+ * 中间人，你的女性朋友娜娜
+ */&lt;/span&gt;
+&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;NaNa&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Beauty&lt;/span&gt; &lt;/span&gt;{
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;private&lt;/span&gt; Beauty beauty;
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;/**
+     * 通过构造方法传入目标对象
+     * &lt;span class=&quot;hljs-doctag&quot;&gt;@param&lt;/span&gt; beauty
+     */&lt;/span&gt;
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;NaNa&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(Beauty beauty)&lt;/span&gt; &lt;/span&gt;{
+        &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.beauty = beauty;
+    }
+
+    &lt;span class=&quot;hljs-meta&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;eat&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;{
+        &lt;span class=&quot;hljs-comment&quot;&gt;//调用目标对象上的吃饭方法&lt;/span&gt;
+        beauty.eat();
+    }
+}
+`&lt;/pre&gt;
+
+创建你的类，里面添加交朋友的方法：
+
+&lt;pre&gt;`package cn.cosher.proxy.staticproxy;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;You&lt;/span&gt; {
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;private&lt;/span&gt; Beauty beauty;
+
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;You&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;Beauty beauty&lt;/span&gt;) &lt;/span&gt;{
+        &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.beauty = beauty;
+    }
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;/**
+     * 交朋友
+     */&lt;/span&gt;
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;makeFriend&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;{
+        beauty.eat();
+    }
+}
+`&lt;/pre&gt;
+
+创建测试类：
+
+&lt;pre&gt;`&lt;span class=&quot;hljs-keyword&quot;&gt;package&lt;/span&gt; cn.cosher.proxy.staticproxy;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Test&lt;/span&gt; &lt;/span&gt;{
+
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(String[] args)&lt;/span&gt; &lt;/span&gt;{
+        XiaoMan xiaoMan = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; XiaoMan();
+        NaNa naNa = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; NaNa(xiaoMan);
+        You you = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; You(naNa);
+
+        you.makeFriend();
+    }
+}
+`&lt;/pre&gt;
+
+### 动态代理
+
+动态代理它可以直接给某一个目标对象生成一个代理对象，而不需要代理类存在。动态代理与静态代理原理是一样的，只是它没有具体的代理类，直接在程序运行时动态生成了一个代理对象。
+
+动态代理的技术实现：</code></pre><ul>
+<li><p>JDK提供的动态代理，底层使用反射原理，只能创建接口的代理。</p>
+</li>
+<li><p>cglib，底层是通过使用一个小而快的字节码处理框架ASM，可以创建类和接口的代理。</p>
+<p>jdk的动态代理：</p>
+</li>
+<li><p>Proxy.newProxyInstance():产生代理接口的实例。仅能代理实现至少一个接口的类</p>
+<pre><code>*   ClassLoader：类加载器。即被代理的接口的类加载器。</code></pre><ul>
+<li>Class[] interface：被代理对象的父接口</li>
+<li>InvocationHandler：将要在代理中实现的功能写在该对象中</li>
+</ul>
+</li>
+<li><p>InvocationHandler中的invoke方法：调用代理类的任何方法，此方法都会执行</p>
+<pre><code>*   Object proxy:代理对象自身的引用。</code></pre><ul>
+<li>Method method:当前被调用的方法。</li>
+<li>Object[] args:当前被调用方法用到的参数</li>
+</ul>
+<p>只需要将之前的测试类中的代码修改为下面的内容即可：</p>
+<pre>`<span class="hljs-keyword">package</span> cn.cosher.proxy.staticproxy;
+
+<span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;
+<span class="hljs-keyword">import</span> java.lang.reflect.Method;
+<span class="hljs-keyword">import</span> java.lang.reflect.Proxy;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        Beauty xiaoMan = <span class="hljs-keyword">new</span> XiaoMan();
+
+        <span class="hljs-comment">//不需要自己创建代理了</span>
+        <span class="hljs-comment">//NaNa naNa = new NaNa(xiaoMan);</span>
+
+        <span class="hljs-comment">//由jdk动态的为你创建一个代理</span>
+        Beauty proxy = (Beauty)Proxy.newProxyInstance(xiaoMan.getClass().getClassLoader(), xiaoMan.getClass().getInterfaces(), <span class="hljs-keyword">new</span> InvocationHandler() {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
+                System.out.println(<span class="hljs-string">"吃饭之前的准备"</span>);
+                Object invoke = method.invoke(xiaoMan);
+                System.out.println(<span class="hljs-string">"吃饭之后的结果"</span>);
+                <span class="hljs-keyword">return</span> invoke;
+            }
+        });
+
+        You you = <span class="hljs-keyword">new</span> You(proxy);
+
+        you.makeFriend();
+    }
+}
+`</pre>
+
+<p><strong>调用有参数的方法</strong><br>在彼此认识之后，你打算送小曼礼物，此时将之前的代码稍作修改：</p>
+<p>在接口中新增gift方法，count表示礼物的数量：</p>
+<pre>` <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">gift</span><span class="hljs-params">(<span class="hljs-keyword">int</span> count)</span></span>;
+`</pre>
+
+<p>在XiaoMan的类中添加gift方法的重写：</p>
+<pre>`@<span class="hljs-function">Override
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">gift</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> count</span>) </span>{
+    System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">"收到"</span> + count + <span class="hljs-string">"礼物"</span>);
+}
+`</pre>
+
+<p>在You类中添加show方法用来送礼物：</p>
+<pre>`<span class="hljs-comment">/**
+ * 展示
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span>{
+    beauty.gift(<span class="hljs-number">10</span>);
+}
+`</pre>
+
+<p>修改之前的测试类如下，送礼物的时候，为了感谢代理人，所以每次会把礼物分一半给代理人：</p>
+<pre>`Beauty xiaoMan = <span class="hljs-keyword">new</span> XiaoMan();
+
+    <span class="hljs-comment">//不需要自己创建代理了</span>
+    <span class="hljs-comment">//NaNa naNa = new NaNa(xiaoMan);</span>
+
+    <span class="hljs-comment">//由jdk动态的为你创建一个代理</span>
+    Beauty proxy = (Beauty)<span class="hljs-built_in">Proxy</span>.newProxyInstance(xiaoMan.getClass().getClassLoader(), xiaoMan.getClass().getInterfaces(), <span class="hljs-keyword">new</span> InvocationHandler() {
+        @Override
+        public <span class="hljs-built_in">Object</span> invoke(<span class="hljs-built_in">Object</span> proxy, Method method, <span class="hljs-built_in">Object</span>[] args) throws Throwable {
+            System.out.println(<span class="hljs-string">"准备"</span>);
+            <span class="hljs-built_in">Object</span> invoke = <span class="hljs-literal">null</span>;
+            <span class="hljs-keyword">if</span> (<span class="hljs-string">"gift"</span>.equals(method.getName())){
+                invoke = method.invoke(xiaoMan,<span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>[]{(Integer)args[<span class="hljs-number">0</span>]/<span class="hljs-number">2</span>});
+            }<span class="hljs-keyword">else</span>{
+                invoke = method.invoke(xiaoMan);
+            }
+
+            System.out.println(<span class="hljs-string">"结果"</span>);
+            <span class="hljs-keyword">return</span> invoke;
+        }
+    });
+
+    You you = <span class="hljs-keyword">new</span> You(proxy);
+
+    you.makeFriend();
+    you.show();</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring ico</title>
     <url>https://cosher.gitee.io/blog/2020/03/05/Spring/spring%E4%B8%AD%E7%9A%84ioc/</url>
     <content><![CDATA[<h3 id="ioc简介"><a href="#ioc简介" class="headerlink" title="ioc简介"></a>ioc简介</h3><p>控制反转（IoC，Inversion of Control），是一种思想。指的是将创建对象的操作权交给容器（例如spring），通过容器来装配和管理对象的创建，控制反转其实就是对这些对象控制权的反转，控制权由程序本身反转给了外部容器。<br>ioc是一种思想，有一些实现方式，其中较为常用的一种是依赖注入(Dependency Injection，简称DI)，依赖注入是指程序运行过程中，若需要调用另一个对象协助时，无须在代码中创建被调用者，而是依赖于外部容器，由外部容器创建后传递给程序。<br>依赖注入让 Spring 的Bean之间以配置文件的方式组织在一起，而不是以硬编码的方式耦合在一起。<br>在之前的第一个程序中实际上就是使用了依赖注入这种方式获取的StudentServiceImpl对象。</p>
@@ -136,21 +352,20 @@ public class Test01 {
   <entry>
     <title>Spring</title>
     <url>https://cosher.gitee.io/blog/2020/03/05/Spring/index/</url>
-    <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="Spring-是于-2003-年兴起的一个轻量级的Java-开发框架，创始人是Rod-Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目-spring-mvc-spring-boot-spring-cloud-spring-data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99-都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。"><a href="#Spring-是于-2003-年兴起的一个轻量级的Java-开发框架，创始人是Rod-Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目-spring-mvc-spring-boot-spring-cloud-spring-data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99-都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。" class="headerlink" title="Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目,spring mvc,spring boot,spring cloud, spring data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99%都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。"></a>Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的<a id="more"></a>，随着时代的发展，spring旗下发展了很多项目,spring mvc,spring boot,spring cloud, spring data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99%都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。</h3><h3 id="学习spring之前需要了解的设计模式："><a href="#学习spring之前需要了解的设计模式：" class="headerlink" title="学习spring之前需要了解的设计模式："></a>学习spring之前需要了解的设计模式：</h3><p><a href="">java代理模式静态代理和动态代理</a></p>
-<p><a href="">三种工厂模式</a></p>
+    <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="Spring-是于-2003-年兴起的一个轻量级的Java-开发框架，创始人是Rod-Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目-spring-mvc-spring-boot-spring-cloud-spring-data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99-都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。"><a href="#Spring-是于-2003-年兴起的一个轻量级的Java-开发框架，创始人是Rod-Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目-spring-mvc-spring-boot-spring-cloud-spring-data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99-都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。" class="headerlink" title="Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的，随着时代的发展，spring旗下发展了很多项目,spring mvc,spring boot,spring cloud, spring data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99%都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。"></a>Spring 是于 2003 年兴起的一个轻量级的Java 开发框架，创始人是Rod Johnson，它是为了解决企业应用开发的复杂性而创建的<a id="more"></a>，随着时代的发展，spring旗下发展了很多项目,spring mvc,spring boot,spring cloud, spring data等等，这些项目使用方便，已经有越来越多的开发者开始使用这些项目。特别是在企业开发中，你可能不会用到其他框架，但是基本上99%都会用到spring，其提供的ioc和aop的实现方式已经成为业内经典的框架。</h3><h3 id="学习spring之前需要了解的设计模式："><a href="#学习spring之前需要了解的设计模式：" class="headerlink" title="学习spring之前需要了解的设计模式："></a>学习spring之前需要了解的设计模式：</h3><p><a href="./java代理模式静态代理和动态代理">java代理模式静态代理和动态代理</a><br><a href="./三种工厂模式">三种工厂模式</a></p>
 <ol>
 <li><a href="../简介">spring简介</a></li>
 <li><a href="../spring中的ioc">spring中的ioc</a></li>
 <li><a href="../bean的装配">bean的装配</a></li>
 <li><a href="./依赖注入">spring的依赖注入</a></li>
-<li><a href="./spring中的AOP">spring中的AOP</a></li>
-<li><a href="#">AspectJ对AOP的支持</a></li>
-<li><a href="#">spring在web中的使用</a></li>
-<li><a href="#">ssm（spring mvc+spring+mybatis）框架整合</a></li>
-<li><a href="#">使用spring管理事务</a></li>
-<li><a href="#">使用SSM框架组合实现增删改查的功能</a></li>
-<li><a href="#">验证事务</a></li>
-<li><a href="#">mybatis generator逆向工程生成代码</a></li>
+<li><a href="../spring中的AOP">spring中的AOP</a></li>
+<li><a href="../AspectJ对AOP的支持">AspectJ对AOP的支持</a></li>
+<li><a href="../spring在web中的使用">spring在web中的使用</a></li>
+<li><a href="../ssm">ssm（spring mvc+spring+mybatis）框架整合</a></li>
+<li><a href="../spring管理事务">使用spring管理事务</a></li>
+<li><a href="../框架组合实现增删改查的功能">使用SSM框架组合实现增删改查的功能</a></li>
+<li><a href="../验证事务">验证事务</a></li>
+<li><a href="../逆向工程生成代码">mybatis generator逆向工程生成代码</a></li>
 </ol>
 ]]></content>
       <categories>

@@ -6,7 +6,7 @@
   <link href="https://cosher.gitee.io/blog/atom.xml" rel="self"/>
   
   <link href="https://cosher.gitee.io/blog/"/>
-  <updated>2020-03-05T07:15:37.340Z</updated>
+  <updated>2020-03-05T07:28:16.489Z</updated>
   <id>https://cosher.gitee.io/blog/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring</title>
+    <link href="https://cosher.gitee.io/blog/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"/>
+    <id>https://cosher.gitee.io/blog/2020/03/05/Spring/java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</id>
+    <published>2020-03-05T07:22:10.419Z</published>
+    <updated>2020-03-05T07:28:16.489Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;代理模式简介&quot;&gt;&lt;a href=&quot;#代理模式简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://cosher.gitee.io/blog/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://cosher.gitee.io/blog/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring ico</title>
@@ -83,7 +110,7 @@
     <link href="https://cosher.gitee.io/blog/2020/03/05/Spring/index/"/>
     <id>https://cosher.gitee.io/blog/2020/03/05/Spring/index/</id>
     <published>2020-03-05T05:38:05.160Z</published>
-    <updated>2020-03-05T07:18:30.461Z</updated>
+    <updated>2020-03-05T07:21:30.877Z</updated>
     
     <summary type="html">
     
